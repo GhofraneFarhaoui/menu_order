@@ -1,0 +1,125 @@
+.container {
+  font-family: 'Baloo Bhaina 2', sans-serif;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.headerWrapper {
+  width: 100%;
+  position: relative;
+}
+
+.orderContainer {
+  font-family: 'Baloo Bhaina 2', sans-serif;
+  padding: 20px;
+  background: #f9f9f9;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.header {
+  text-align: center;
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.itemList {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: white;
+  padding: 0;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 10px;
+}
+
+.itemImage {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.itemDetails {
+  flex-grow: 1;
+  padding-left: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.itemName {
+  font-size: 15px;
+  color: #ff5b5a;
+  font-weight: 500;
+  text-align: left;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.itemPrice {
+  font-size: 14px;
+  color: #333;
+  font-weight: 400;
+  margin-top: 5px;
+}
+
+.itemQuantity {
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+  margin-left: auto;
+  text-align: center;
+  padding-right: 5px;
+}
+
+.totalPrice {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.totalPrice h2 {
+  font-size: 22px;
+  color: #333;
+  font-weight: 600;
+}
+
+.buttonsContainer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.confirmButton,
+.cancelButton {
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.confirmButton {
+  background-color: #ff5b5a;
+  color: white;
+  border: none;
+}
+
+.cancelButton {
+  background-color: #ccc;
+  color: #333;
+  border: none;
+}
