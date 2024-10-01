@@ -13,5 +13,5 @@ export class Category {
   image_url: string;
 
   @OneToMany(() => MenuItem, (menuItem) => menuItem.category)
-  menuItems: MenuItem[]; // One Category has many MenuItems
+  menuItems: MenuItem[];
 }

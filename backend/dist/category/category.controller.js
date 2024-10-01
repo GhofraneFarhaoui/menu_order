@@ -8,9 +8,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var __param = (this && this.__param) || function (paramIndex, decorator) {
-    return function (target, key) { decorator(target, key, paramIndex); }
-};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -55,9 +52,6 @@ var CategoryController = /** @class */ (function () {
     function CategoryController(categoryService) {
         this.categoryService = categoryService;
     }
-    CategoryController.prototype.findOne = function (id) {
-        return this.categoryService.findOne(+id);
-    };
     CategoryController.prototype.findAll = function () {
         return __awaiter(this, void 0, void 0, function () {
             var categories;
@@ -66,19 +60,11 @@ var CategoryController = /** @class */ (function () {
                     case 0: return [4 /*yield*/, this.categoryService.findAll()];
                     case 1:
                         categories = _a.sent();
-                        console.log('Controller response:', categories);
-                        return [2 /*return*/, categories];
+                        return [2 /*return*/, categories]; // Should now include menuItems in the response
                 }
             });
         });
     };
-    __decorate([
-        (0, common_1.Get)(':id'),
-        __param(0, (0, common_1.Param)('id')),
-        __metadata("design:type", Function),
-        __metadata("design:paramtypes", [String]),
-        __metadata("design:returntype", void 0)
-    ], CategoryController.prototype, "findOne", null);
     __decorate([
         (0, common_1.Get)(),
         __metadata("design:type", Function),
