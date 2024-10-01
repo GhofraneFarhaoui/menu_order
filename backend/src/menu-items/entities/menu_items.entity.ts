@@ -19,5 +19,5 @@ export class MenuItem {
   image_url: string;
 
   @ManyToOne(() => Category, (category) => category.menuItems)
-  category: Category; // Many MenuItems belong to one Category
+  category: Category; 
 }
