@@ -1,4 +1,4 @@
-import { MenuItem } from '../../menu-items/entities/menu-items.entity';
+import { MenuItem } from '../../menu-items/entities/menu_items.entity';
 export declare class Category {
     id: number;
     name: string;

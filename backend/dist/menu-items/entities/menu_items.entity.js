@@ -9,31 +9,39 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Category = void 0;
+exports.MenuItem = void 0;
 var typeorm_1 = require("typeorm");
-var menu_items_entity_1 = require("../../menu-items/entities/menu_items.entity");
-var Category = /** @class */ (function () {
-    function Category() {
+var category_entity_1 = require("../../category/entities/category.entity");
+var MenuItem = /** @class */ (function () {
+    function MenuItem() {
     }
     __decorate([
         (0, typeorm_1.PrimaryGeneratedColumn)(),
         __metadata("design:type", Number)
-    ], Category.prototype, "id", void 0);
+    ], MenuItem.prototype, "id", void 0);
     __decorate([
         (0, typeorm_1.Column)(),
         __metadata("design:type", String)
-    ], Category.prototype, "name", void 0);
+    ], MenuItem.prototype, "name", void 0);
     __decorate([
         (0, typeorm_1.Column)({ nullable: true }),
         __metadata("design:type", String)
-    ], Category.prototype, "image_url", void 0);
+    ], MenuItem.prototype, "description", void 0);
     __decorate([
-        (0, typeorm_1.OneToMany)(function () { return menu_items_entity_1.MenuItem; }, function (menuItem) { return menuItem.category; }),
-        __metadata("design:type", Array)
-    ], Category.prototype, "menuItems", void 0);
-    Category = __decorate([
+        (0, typeorm_1.Column)('decimal'),
+        __metadata("design:type", Number)
+    ], MenuItem.prototype, "price", void 0);
+    __decorate([
+        (0, typeorm_1.Column)({ nullable: true }),
+        __metadata("design:type", String)
+    ], MenuItem.prototype, "image_url", void 0);
+    __decorate([
+        (0, typeorm_1.ManyToOne)(function () { return category_entity_1.Category; }, function (category) { return category.menuItems; }),
+        __metadata("design:type", category_entity_1.Category)
+    ], MenuItem.prototype, "category", void 0);
+    MenuItem = __decorate([
         (0, typeorm_1.Entity)()
-    ], Category);
-    return Category;
+    ], MenuItem);
+    return MenuItem;
 }());
-exports.Category = Category;
+exports.MenuItem = MenuItem;

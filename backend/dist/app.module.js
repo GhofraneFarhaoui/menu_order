@@ -9,11 +9,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppModule = void 0;
 var common_1 = require("@nestjs/common");
 var typeorm_1 = require("@nestjs/typeorm");
-var serve_static_1 = require("@nestjs/serve-static");
-var path_1 = require("path");
-var menu_items_module_1 = require("./menu-items/menu-items.module");
+var menu_items_module_1 = require("./menu-items/menu_items.module");
 var category_module_1 = require("./category/category.module");
-var menu_items_entity_1 = require("./menu-items/entities/menu-items.entity");
+var menu_items_entity_1 = require("./menu-items/entities/menu_items.entity");
 var category_entity_1 = require("./category/entities/category.entity");
 var AppModule = /** @class */ (function () {
     function AppModule() {
@@ -30,9 +28,6 @@ var AppModule = /** @class */ (function () {
                     database: 'menu_order_app',
                     entities: [menu_items_entity_1.MenuItem, category_entity_1.Category],
                     synchronize: true,
-                }),
-                serve_static_1.ServeStaticModule.forRoot({
-                    rootPath: (0, path_1.join)(__dirname, '..', 'public'),
                 }),
                 category_module_1.CategoriesModule,
                 menu_items_module_1.MenuItemsModule,

@@ -48,47 +48,36 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CategoryController = void 0;
+exports.MenuItemsService = void 0;
 var common_1 = require("@nestjs/common");
-var category_service_1 = require("./category.service");
-var CategoryController = /** @class */ (function () {
-    function CategoryController(categoryService) {
-        this.categoryService = categoryService;
+var typeorm_1 = require("@nestjs/typeorm");
+var typeorm_2 = require("typeorm");
+var menu_items_entity_1 = require("./entities/menu_items.entity");
+var MenuItemsService = /** @class */ (function () {
+    function MenuItemsService(menuItemsRepository) {
+        this.menuItemsRepository = menuItemsRepository;
     }
-    CategoryController.prototype.findOne = function (id) {
-        return this.categoryService.findOne(+id);
-    };
-    CategoryController.prototype.findAll = function () {
+    MenuItemsService.prototype.findAll = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var categories;
             return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.categoryService.findAll()];
-                    case 1:
-                        categories = _a.sent();
-                        console.log('Controller response:', categories);
-                        return [2 /*return*/, categories];
-                }
+                return [2 /*return*/, this.menuItemsRepository.find()];
             });
         });
     };
-    __decorate([
-        (0, common_1.Get)(':id'),
-        __param(0, (0, common_1.Param)('id')),
-        __metadata("design:type", Function),
-        __metadata("design:paramtypes", [String]),
-        __metadata("design:returntype", void 0)
-    ], CategoryController.prototype, "findOne", null);
-    __decorate([
-        (0, common_1.Get)(),
-        __metadata("design:type", Function),
-        __metadata("design:paramtypes", []),
-        __metadata("design:returntype", Promise)
-    ], CategoryController.prototype, "findAll", null);
-    CategoryController = __decorate([
-        (0, common_1.Controller)('categories'),
-        __metadata("design:paramtypes", [category_service_1.CategoryService])
-    ], CategoryController);
-    return CategoryController;
+    MenuItemsService.prototype.findByCategory = function (categoryId) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/, this.menuItemsRepository.find({
+                        where: { category: { id: categoryId } },
+                    })];
+            });
+        });
+    };
+    MenuItemsService = __decorate([
+        (0, common_1.Injectable)(),
+        __param(0, (0, typeorm_1.InjectRepository)(menu_items_entity_1.MenuItem)),
+        __metadata("design:paramtypes", [typeorm_2.Repository])
+    ], MenuItemsService);
+    return MenuItemsService;
 }());
-exports.CategoryController = CategoryController;
+exports.MenuItemsService = MenuItemsService;
