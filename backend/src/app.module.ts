@@ -15,7 +15,8 @@ import { Category } from './category/entities/category.entity';
       password: 'ghof123',
       database: 'menu_order_app',
       entities: [MenuItem, Category],
-      synchronize: true,
+      synchronize: false,
+      logging: true,
     }),
 
     CategoriesModule,

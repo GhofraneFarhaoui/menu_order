@@ -55,6 +55,13 @@ var MenuItemsController = /** @class */ (function () {
     function MenuItemsController(menuItemsService) {
         this.menuItemsService = menuItemsService;
     }
+    MenuItemsController.prototype.findAll = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/, this.menuItemsService.findAll()];
+            });
+        });
+    };
     MenuItemsController.prototype.findByCategory = function (categoryId) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
@@ -63,6 +70,12 @@ var MenuItemsController = /** @class */ (function () {
         });
     };
     __decorate([
+        (0, common_1.Get)(),
+        __metadata("design:type", Function),
+        __metadata("design:paramtypes", []),
+        __metadata("design:returntype", Promise)
+    ], MenuItemsController.prototype, "findAll", null);
+    __decorate([
         (0, common_1.Get)('category/:categoryId'),
         __param(0, (0, common_1.Param)('categoryId')),
         __metadata("design:type", Function),
@@ -70,7 +83,8 @@ var MenuItemsController = /** @class */ (function () {
         __metadata("design:returntype", Promise)
     ], MenuItemsController.prototype, "findByCategory", null);
     MenuItemsController = __decorate([
-        (0, common_1.Controller)('menu-items'),
+        (0, common_1.Controller)('menu-items') // Must match the route you're using in the URL
+        ,
         __metadata("design:paramtypes", [menu_items_service_1.MenuItemsService])
     ], MenuItemsController);
     return MenuItemsController;

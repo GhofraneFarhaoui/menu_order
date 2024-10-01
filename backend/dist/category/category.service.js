@@ -59,8 +59,17 @@ var CategoryService = /** @class */ (function () {
     }
     CategoryService.prototype.findAll = function () {
         return __awaiter(this, void 0, void 0, function () {
+            var categories;
             return __generator(this, function (_a) {
-                return [2 /*return*/, this.categoryRepository.query('SELECT * FROM categories')];
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.categoryRepository.find({
+                            relations: ['menuItems'],
+                        })];
+                    case 1:
+                        categories = _a.sent();
+                        console.log(categories); // Log the results for debugging
+                        return [2 /*return*/, categories];
+                }
             });
         });
     };
@@ -69,9 +78,13 @@ var CategoryService = /** @class */ (function () {
             var category;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.categoryRepository.findOne({ where: { id: id } })];
+                    case 0: return [4 /*yield*/, this.categoryRepository.findOne({
+                            where: { id: id },
+                            relations: ['menuItems'],
+                        })];
                     case 1:
                         category = _a.sent();
+                        console.log(category); // Log the result for debugging
                         return [2 /*return*/, category];
                 }
             });

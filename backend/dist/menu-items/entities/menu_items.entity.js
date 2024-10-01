@@ -20,7 +20,8 @@ var MenuItem = /** @class */ (function () {
         __metadata("design:type", Number)
     ], MenuItem.prototype, "id", void 0);
     __decorate([
-        (0, typeorm_1.Column)(),
+        (0, typeorm_1.Column)({ nullable: false }) // Ensure 'name' is not nullable
+        ,
         __metadata("design:type", String)
     ], MenuItem.prototype, "name", void 0);
     __decorate([
@@ -40,7 +41,7 @@ var MenuItem = /** @class */ (function () {
         __metadata("design:type", category_entity_1.Category)
     ], MenuItem.prototype, "category", void 0);
     MenuItem = __decorate([
-        (0, typeorm_1.Entity)()
+        (0, typeorm_1.Entity)('menu_items')
     ], MenuItem);
     return MenuItem;
 }());

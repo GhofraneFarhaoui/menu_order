@@ -32,7 +32,7 @@ var Category = /** @class */ (function () {
         __metadata("design:type", Array)
     ], Category.prototype, "menuItems", void 0);
     Category = __decorate([
-        (0, typeorm_1.Entity)()
+        (0, typeorm_1.Entity)('categories')
     ], Category);
     return Category;
 }());

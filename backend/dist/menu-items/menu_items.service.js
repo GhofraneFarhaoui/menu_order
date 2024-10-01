@@ -69,7 +69,7 @@ var MenuItemsService = /** @class */ (function () {
             return __generator(this, function (_a) {
                 return [2 /*return*/, this.menuItemsRepository.find({
                         where: { category: { id: categoryId } },
-                        relations: ['category'], // Ensure the category relation is loaded
+                        relations: ['category'],
                     })];
             });
         });

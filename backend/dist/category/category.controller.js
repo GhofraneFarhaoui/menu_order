@@ -8,6 +8,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -54,14 +57,15 @@ var CategoryController = /** @class */ (function () {
     }
     CategoryController.prototype.findAll = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var categories;
             return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.categoryService.findAll()];
-                    case 1:
-                        categories = _a.sent();
-                        return [2 /*return*/, categories]; // Should now include menuItems in the response
-                }
+                return [2 /*return*/, this.categoryService.findAll()];
+            });
+        });
+    };
+    CategoryController.prototype.findOne = function (id) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/, this.categoryService.findOne(id)];
             });
         });
     };
@@ -71,6 +75,13 @@ var CategoryController = /** @class */ (function () {
         __metadata("design:paramtypes", []),
         __metadata("design:returntype", Promise)
     ], CategoryController.prototype, "findAll", null);
+    __decorate([
+        (0, common_1.Get)(':id'),
+        __param(0, (0, common_1.Param)('id')),
+        __metadata("design:type", Function),
+        __metadata("design:paramtypes", [Number]),
+        __metadata("design:returntype", Promise)
+    ], CategoryController.prototype, "findOne", null);
     CategoryController = __decorate([
         (0, common_1.Controller)('categories'),
         __metadata("design:paramtypes", [category_service_1.CategoryService])

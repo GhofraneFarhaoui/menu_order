@@ -1,12 +1,12 @@
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
 import { Category } from '../../category/entities/category.entity';
 
-@Entity()
+@Entity('menu_items')
 export class MenuItem {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({ nullable: false }) // Ensure 'name' is not nullable
   name: string;
 
   @Column('text', { nullable: true })

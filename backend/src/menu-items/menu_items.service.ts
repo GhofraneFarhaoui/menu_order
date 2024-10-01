@@ -17,7 +17,7 @@ export class MenuItemsService {
   async findByCategory(categoryId: number): Promise<MenuItem[]> {
     return this.menuItemsRepository.find({
       where: { category: { id: categoryId } },
-      relations: ['category'], // Ensure the category relation is loaded
+      relations: ['category'],
     });
   }
 }
