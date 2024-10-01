@@ -10,8 +10,8 @@ export class Category {
   name: string;
 
   @Column({ nullable: true })
-  image_url!: string;
+  image_url: string;
 
   @OneToMany(() => MenuItem, (menuItem) => menuItem.category)
-  menuItems: MenuItem[];
+  menuItems: MenuItem[]; // One Category has many MenuItems
 }
