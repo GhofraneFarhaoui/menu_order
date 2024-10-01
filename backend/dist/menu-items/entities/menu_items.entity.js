@@ -24,7 +24,7 @@ var MenuItem = /** @class */ (function () {
         __metadata("design:type", String)
     ], MenuItem.prototype, "name", void 0);
     __decorate([
-        (0, typeorm_1.Column)({ nullable: true }),
+        (0, typeorm_1.Column)('text', { nullable: true }),
         __metadata("design:type", String)
     ], MenuItem.prototype, "description", void 0);
     __decorate([

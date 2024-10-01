@@ -9,7 +9,7 @@ export class MenuItem {
   @Column()
   name: string;
 
-  @Column({ nullable: true })
+  @Column('text', { nullable: true })
   description: string;
 
   @Column('decimal')
@@ -19,5 +19,5 @@ export class MenuItem {
   image_url: string;
 
   @ManyToOne(() => Category, (category) => category.menuItems)
-  category: Category;
+  category: Category; // Many MenuItems belong to one Category
 }

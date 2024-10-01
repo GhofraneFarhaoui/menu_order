@@ -60,7 +60,7 @@ var CategoryService = /** @class */ (function () {
     CategoryService.prototype.findAll = function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                return [2 /*return*/, this.categoryRepository.find()];
+                return [2 /*return*/, this.categoryRepository.query('SELECT * FROM categories')];
             });
         });
     };
