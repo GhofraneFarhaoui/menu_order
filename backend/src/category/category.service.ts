@@ -14,7 +14,7 @@ export class CategoryService {
     const categories = await this.categoryRepository.find({
       relations: ['menuItems'],
     });
-    console.log(categories); // Log the results for debugging
+    console.log(categories);
     return categories;
   }
 
@@ -23,7 +23,7 @@ export class CategoryService {
       where: { id },
       relations: ['menuItems'],
     });
-    console.log(category); // Log the result for debugging
+    console.log(category);
     return category!;
   }
 }

@@ -67,7 +67,7 @@ var CategoryService = /** @class */ (function () {
                         })];
                     case 1:
                         categories = _a.sent();
-                        console.log(categories); // Log the results for debugging
+                        console.log(categories);
                         return [2 /*return*/, categories];
                 }
             });
@@ -84,7 +84,7 @@ var CategoryService = /** @class */ (function () {
                         })];
                     case 1:
                         category = _a.sent();
-                        console.log(category); // Log the result for debugging
+                        console.log(category);
                         return [2 /*return*/, category];
                 }
             });

@@ -3,7 +3,6 @@ import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 import styles from './orderPage.module.css';
 import Header from '../../../components/header';
-import { useCart } from '../../../cartContest';
 
 interface CartItem {
   id: number;
@@ -13,26 +12,47 @@ interface CartItem {
   image_url: string;
 }
 
-interface LocationState {
-  cartItems: CartItem[];
-  totalPrice: string;
-}
-
 const OrderPage: React.FC = () => {
   const location = useLocation();
-  const { cart, setCart } = useCart(); // Use the cart context
-
-  const [cartItems, setCartItems] = useState<CartItem[]>(
-    (location.state as LocationState)?.cartItems || []
-  );
-  const [totalPrice, setTotalPrice] = useState<string>(
-    (location.state as LocationState)?.totalPrice || '0'
-  );
+  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const [totalPrice, setTotalPrice] = useState<number>(0);
 
   useEffect(() => {
-    console.log('Cart Items in OrderPage:', cartItems);
-  }, [cartItems]);
+    const loadCart = async () => {
+      const savedCart = JSON.parse(sessionStorage.getItem('cart') || '{}');
 
+      if (Object.keys(savedCart).length > 0) {
+        try {
+          const response = await axios.get('http://localhost:3000/menu-items');
+          const allItems = response.data;
+
+          const cartWithDetails = Object.keys(savedCart).map((id) => {
+            const item = allItems.find(
+              (item: CartItem) => item.id === parseInt(id)
+            );
+            return {
+              ...item,
+              quantity: savedCart[id],
+            };
+          });
+
+          setCartItems(cartWithDetails);
+
+          const total = cartWithDetails.reduce(
+            (acc, item) => acc + item.quantity * parseFloat(item.price),
+            0
+          );
+          setTotalPrice(total);
+        } catch (error) {
+          console.error('Error fetching menu items:', error);
+        }
+      }
+    };
+
+    loadCart();
+  }, []);
+
+  // Handle order confirmation
   const handleConfirm = async () => {
     try {
       const response = await axios.post('http://localhost:3000/orders', {
@@ -47,11 +67,11 @@ const OrderPage: React.FC = () => {
     }
   };
 
+  // Handle cart cancellation
   const handleCancel = () => {
-    setCart({});
+    sessionStorage.removeItem('cart');
     setCartItems([]);
-    setTotalPrice('0');
-    console.log('Order cancelled and cart cleared');
+    setTotalPrice(0);
   };
 
   return (
@@ -75,9 +95,7 @@ const OrderPage: React.FC = () => {
                   <span className={styles.itemName}>{item.name}</span>
                   <span className={styles.itemPrice}>{item.price} D</span>
                 </div>
-                <span className={styles.itemQuantity}>
-                  {item.quantity ?? 0}
-                </span>
+                <span className={styles.itemQuantity}>{item.quantity}</span>
               </div>
             ))}
           </div>
@@ -86,17 +104,14 @@ const OrderPage: React.FC = () => {
         )}
 
         <div className={styles.totalPrice}>
-          <h2>Prix Total: {totalPrice} D</h2>
+          <h2>Prix Total: {totalPrice.toFixed(2)} D</h2>
         </div>
 
         <div className={styles.buttonsContainer}>
           <button className={styles.confirmButton} onClick={handleConfirm}>
             Confirmer
           </button>
-          <button
-            className={styles.cancelButton}
-            onClick={handleCancel} // Call the new cancel function
-          >
+          <button className={styles.cancelButton} onClick={handleCancel}>
             Annuler
           </button>
         </div>

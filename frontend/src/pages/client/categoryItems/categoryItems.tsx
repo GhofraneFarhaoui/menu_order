@@ -53,25 +53,24 @@ const CategoryItemsPage: React.FC = () => {
   };
 
   const incrementItem = (id: number) => {
-    setCart((prevCart) => {
-      const updatedCart = {
-        ...prevCart,
-        [id]: (prevCart[id] || 0) + 1,
-      };
-      console.log('Updated Cart:', updatedCart);
-      return updatedCart;
-    });
+    const storedCart = JSON.parse(sessionStorage.getItem('cart') || '{}');
+    const updatedCart = {
+      ...storedCart,
+      [id]: (storedCart[id] || 0) + 1,
+    };
+    sessionStorage.setItem('cart', JSON.stringify(updatedCart));
+    setCart(updatedCart);
   };
 
   const decrementItem = (id: number) => {
-    setCart((prevCart) => {
-      const updatedCart = {
-        ...prevCart,
-        [id]: Math.max((prevCart[id] || 0) - 1, 0),
-      };
-      console.log('Updated Cart:', updatedCart);
-      return updatedCart;
-    });
+    const storedCart = JSON.parse(sessionStorage.getItem('cart') || '{}');
+    const updatedCart = {
+      ...storedCart,
+      [id]: Math.max((storedCart[id] || 0) - 1, 0),
+    };
+    if (updatedCart[id] === 0) delete updatedCart[id]; // Remove item if qte is 0
+    sessionStorage.setItem('cart', JSON.stringify(updatedCart));
+    setCart(updatedCart);
   };
 
   const getTotalPrice = () =>
@@ -84,16 +83,20 @@ const CategoryItemsPage: React.FC = () => {
   const navigate = useNavigate();
 
   const handleCheckout = () => {
+    const storedCart = JSON.parse(sessionStorage.getItem('cart') || '{}');
+
     const cartItems = items
-      .filter((item) => cart[item.id] > 0)
+      .filter((item) => storedCart[item.id] > 0)
       .map((item) => ({
         ...item,
-        quantity: cart[item.id], // add the quantity from the cart
+        quantity: storedCart[item.id],
       }));
 
-    const totalPrice = getTotalPrice();
-    console.log('Cart Items:', cartItems); // log to verify
-    console.log('Total Price:', totalPrice); // log to verify
+    const totalPrice = Object.keys(storedCart).reduce((acc, id) => {
+      const item = items.find((item) => item.id === parseInt(id));
+      const quantity = storedCart[parseInt(id)] || 0;
+      return acc + (item ? quantity * parseFloat(item.price) : 0);
+    }, 0);
 
     navigate('/order', { state: { cartItems, totalPrice } });
   };
