@@ -16,9 +16,7 @@ import { Category } from './category/entities/category.entity';
       database: 'menu_order_app',
       entities: [MenuItem, Category],
       synchronize: false,
-      logging: true,
     }),
-
     CategoriesModule,
     MenuItemsModule,
   ],

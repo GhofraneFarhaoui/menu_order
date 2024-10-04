@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 type HeaderProps = {
   style?: React.CSSProperties;
 };
-// Define the styles using CSSProperties for type safety
+
 const styles: { [key: string]: CSSProperties } = {
   header: {
     position: 'relative',
@@ -38,16 +38,16 @@ const styles: { [key: string]: CSSProperties } = {
   },
   link: {
     textDecoration: 'none',
-    color: '#FF5B5A', // Default color for non-active links
+    color: '#FF5B5A',
     padding: '10px',
     borderRadius: '5px',
-    transition: 'color 0.3s', // Smooth color transition
+    transition: 'color 0.3s',
   },
   linkActive: {
-    color: '#fff', // Color for the active link
+    color: '#fff',
   },
   linkHover: {
-    color: 'rgba(0, 0, 0, 0.7)', // Hover color (if needed)
+    color: 'rgba(0, 0, 0, 0.7)',
   },
   shadow: {
     content: '""',
@@ -81,10 +81,10 @@ const Header: React.FC<HeaderProps> = ({ style }) => {
           Menu
         </Link>
         <Link
-          to="/orders"
+          to="/order"
           style={{
             ...styles.link,
-            ...(currentPath === '/orders' ? styles.linkActive : {}),
+            ...(currentPath === '/order' ? styles.linkActive : {}),
           }}
         >
           Ma Commande

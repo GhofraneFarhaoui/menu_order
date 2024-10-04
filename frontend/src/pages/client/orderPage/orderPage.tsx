@@ -13,7 +13,6 @@ interface CartItem {
 }
 
 const OrderPage: React.FC = () => {
-  const location = useLocation();
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [totalPrice, setTotalPrice] = useState<number>(0);
 

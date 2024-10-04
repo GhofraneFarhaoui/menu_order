@@ -28,7 +28,6 @@ var AppModule = /** @class */ (function () {
                     database: 'menu_order_app',
                     entities: [menu_items_entity_1.MenuItem, category_entity_1.Category],
                     synchronize: false,
-                    logging: true,
                 }),
                 category_module_1.CategoriesModule,
                 menu_items_module_1.MenuItemsModule,
