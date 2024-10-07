@@ -54,7 +54,7 @@ const OrderPage: React.FC = () => {
   // Handle order confirmation
   const handleConfirm = async () => {
     try {
-      const response = await axios.post('http://localhost:3000/orders', {
+      const response = await axios.post('http://localhost:3000/order', {
         items: cartItems.map((item) => ({
           menuItemId: item.id,
           quantity: item.quantity,

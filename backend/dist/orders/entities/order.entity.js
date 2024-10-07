@@ -9,31 +9,27 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Category = void 0;
+exports.Order = void 0;
 var typeorm_1 = require("typeorm");
-var menu_items_entity_1 = require("../../menu-items/entities/menu_items.entity");
-var Category = /** @class */ (function () {
-    function Category() {
+var order_item_entity_1 = require("./order-item.entity");
+var Order = /** @class */ (function () {
+    function Order() {
     }
     __decorate([
         (0, typeorm_1.PrimaryGeneratedColumn)(),
         __metadata("design:type", Number)
-    ], Category.prototype, "id", void 0);
+    ], Order.prototype, "id", void 0);
     __decorate([
-        (0, typeorm_1.Column)({ nullable: false }),
-        __metadata("design:type", String)
-    ], Category.prototype, "name", void 0);
+        (0, typeorm_1.Column)({ type: 'timestamp', default: function () { return 'CURRENT_TIMESTAMP'; } }),
+        __metadata("design:type", Date)
+    ], Order.prototype, "created_at", void 0);
     __decorate([
-        (0, typeorm_1.Column)({ type: 'varchar', nullable: true }),
-        __metadata("design:type", String)
-    ], Category.prototype, "image_url", void 0);
-    __decorate([
-        (0, typeorm_1.OneToMany)(function () { return menu_items_entity_1.MenuItem; }, function (menuItem) { return menuItem.category; }),
+        (0, typeorm_1.OneToMany)(function () { return order_item_entity_1.OrderItem; }, function (orderItem) { return orderItem.order; }, { cascade: true }),
         __metadata("design:type", Array)
-    ], Category.prototype, "menuItems", void 0);
-    Category = __decorate([
-        (0, typeorm_1.Entity)('categories')
-    ], Category);
-    return Category;
+    ], Order.prototype, "items", void 0);
+    Order = __decorate([
+        (0, typeorm_1.Entity)('order')
+    ], Order);
+    return Order;
 }());
-exports.Category = Category;
+exports.Order = Order;

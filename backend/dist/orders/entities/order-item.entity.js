@@ -9,31 +9,32 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Category = void 0;
+exports.OrderItem = void 0;
 var typeorm_1 = require("typeorm");
+var order_entity_1 = require("./order.entity");
 var menu_items_entity_1 = require("../../menu-items/entities/menu_items.entity");
-var Category = /** @class */ (function () {
-    function Category() {
+var OrderItem = /** @class */ (function () {
+    function OrderItem() {
     }
     __decorate([
         (0, typeorm_1.PrimaryGeneratedColumn)(),
         __metadata("design:type", Number)
-    ], Category.prototype, "id", void 0);
+    ], OrderItem.prototype, "id", void 0);
     __decorate([
-        (0, typeorm_1.Column)({ nullable: false }),
-        __metadata("design:type", String)
-    ], Category.prototype, "name", void 0);
+        (0, typeorm_1.ManyToOne)(function () { return order_entity_1.Order; }, function (order) { return order.items; }),
+        __metadata("design:type", order_entity_1.Order)
+    ], OrderItem.prototype, "order", void 0);
     __decorate([
-        (0, typeorm_1.Column)({ type: 'varchar', nullable: true }),
-        __metadata("design:type", String)
-    ], Category.prototype, "image_url", void 0);
+        (0, typeorm_1.ManyToOne)(function () { return menu_items_entity_1.MenuItem; }),
+        __metadata("design:type", menu_items_entity_1.MenuItem)
+    ], OrderItem.prototype, "menuItem", void 0);
     __decorate([
-        (0, typeorm_1.OneToMany)(function () { return menu_items_entity_1.MenuItem; }, function (menuItem) { return menuItem.category; }),
-        __metadata("design:type", Array)
-    ], Category.prototype, "menuItems", void 0);
-    Category = __decorate([
-        (0, typeorm_1.Entity)('categories')
-    ], Category);
-    return Category;
+        (0, typeorm_1.Column)(),
+        __metadata("design:type", Number)
+    ], OrderItem.prototype, "quantity", void 0);
+    OrderItem = __decorate([
+        (0, typeorm_1.Entity)('order_item')
+    ], OrderItem);
+    return OrderItem;
 }());
-exports.Category = Category;
+exports.OrderItem = OrderItem;
