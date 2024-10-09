@@ -20,6 +20,7 @@ var MenuItemsModule = /** @class */ (function () {
             imports: [typeorm_1.TypeOrmModule.forFeature([menu_items_entity_1.MenuItem])],
             providers: [menu_items_service_1.MenuItemsService],
             controllers: [menu_items_controller_1.MenuItemsController],
+            exports: [menu_items_service_1.MenuItemsService, typeorm_1.TypeOrmModule],
         })
     ], MenuItemsModule);
     return MenuItemsModule;

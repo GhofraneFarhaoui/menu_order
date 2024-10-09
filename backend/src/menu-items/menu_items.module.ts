@@ -8,5 +8,6 @@ import { MenuItemsController } from './menu_items.controller';
   imports: [TypeOrmModule.forFeature([MenuItem])],
   providers: [MenuItemsService],
   controllers: [MenuItemsController],
+  exports: [MenuItemsService, TypeOrmModule],
 })
 export class MenuItemsModule {}

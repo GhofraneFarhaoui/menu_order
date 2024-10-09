@@ -21,7 +21,7 @@ var OrderItem = /** @class */ (function () {
         __metadata("design:type", Number)
     ], OrderItem.prototype, "id", void 0);
     __decorate([
-        (0, typeorm_1.ManyToOne)(function () { return order_entity_1.Order; }, function (order) { return order.items; }),
+        (0, typeorm_1.ManyToOne)(function () { return order_entity_1.Order; }, function (order) { return order.orderItems; }),
         __metadata("design:type", order_entity_1.Order)
     ], OrderItem.prototype, "order", void 0);
     __decorate([
@@ -29,7 +29,7 @@ var OrderItem = /** @class */ (function () {
         __metadata("design:type", menu_items_entity_1.MenuItem)
     ], OrderItem.prototype, "menuItem", void 0);
     __decorate([
-        (0, typeorm_1.Column)(),
+        (0, typeorm_1.Column)({ type: 'int' }),
         __metadata("design:type", Number)
     ], OrderItem.prototype, "quantity", void 0);
     OrderItem = __decorate([

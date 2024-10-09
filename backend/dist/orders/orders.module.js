@@ -13,14 +13,19 @@ var orders_service_1 = require("./orders.service");
 var orders_controller_1 = require("./orders.controller");
 var order_entity_1 = require("./entities/order.entity");
 var order_item_entity_1 = require("./entities/order-item.entity");
+var menu_items_entity_1 = require("../menu-items/entities/menu_items.entity");
+var menu_items_module_1 = require("../menu-items/menu_items.module");
 var OrdersModule = /** @class */ (function () {
     function OrdersModule() {
     }
     OrdersModule = __decorate([
         (0, common_1.Module)({
-            imports: [typeorm_1.TypeOrmModule.forFeature([order_entity_1.Order, order_item_entity_1.OrderItem])],
-            providers: [orders_service_1.OrdersService],
-            controllers: [orders_controller_1.OrdersController],
+            imports: [
+                typeorm_1.TypeOrmModule.forFeature([order_entity_1.Order, order_item_entity_1.OrderItem, menu_items_entity_1.MenuItem]),
+                menu_items_module_1.MenuItemsModule,
+            ],
+            providers: [orders_service_1.OrderService],
+            controllers: [orders_controller_1.OrderController],
         })
     ], OrdersModule);
     return OrdersModule;

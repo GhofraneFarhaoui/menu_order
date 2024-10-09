@@ -48,24 +48,46 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.OrdersController = void 0;
+exports.OrderController = void 0;
 var common_1 = require("@nestjs/common");
 var orders_service_1 = require("./orders.service");
-var OrdersController = /** @class */ (function () {
-    function OrdersController(orderService) {
+var create_order_dto_1 = require("./create-order.dto");
+var OrderController = /** @class */ (function () {
+    function OrderController(orderService) {
         this.orderService = orderService;
     }
-    OrdersController.prototype.createOrder = function (body) {
+    OrderController.prototype.createOrder = function (createOrderDto) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                return [2 /*return*/, this.orderService.createOrder(body.items)];
+                return [2 /*return*/, this.orderService.createOrder(createOrderDto)];
             });
         });
     };
-    OrdersController.prototype.getAllOrders = function () {
+    OrderController.prototype.getAllOrders = function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 return [2 /*return*/, this.orderService.getAllOrders()];
+            });
+        });
+    };
+    OrderController.prototype.getOrderById = function (id) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/, this.orderService.getOrderById(id)];
+            });
+        });
+    };
+    OrderController.prototype.updateOrder = function (id, updateData) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/, this.orderService.updateOrder(id, updateData)];
+            });
+        });
+    };
+    OrderController.prototype.deleteOrder = function (id) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/, this.orderService.deleteOrder(id)];
             });
         });
     };
@@ -73,19 +95,41 @@ var OrdersController = /** @class */ (function () {
         (0, common_1.Post)(),
         __param(0, (0, common_1.Body)()),
         __metadata("design:type", Function),
-        __metadata("design:paramtypes", [Object]),
+        __metadata("design:paramtypes", [create_order_dto_1.CreateOrderDto]),
         __metadata("design:returntype", Promise)
-    ], OrdersController.prototype, "createOrder", null);
+    ], OrderController.prototype, "createOrder", null);
     __decorate([
         (0, common_1.Get)(),
         __metadata("design:type", Function),
         __metadata("design:paramtypes", []),
         __metadata("design:returntype", Promise)
-    ], OrdersController.prototype, "getAllOrders", null);
-    OrdersController = __decorate([
+    ], OrderController.prototype, "getAllOrders", null);
+    __decorate([
+        (0, common_1.Get)(':id'),
+        __param(0, (0, common_1.Param)('id')),
+        __metadata("design:type", Function),
+        __metadata("design:paramtypes", [Number]),
+        __metadata("design:returntype", Promise)
+    ], OrderController.prototype, "getOrderById", null);
+    __decorate([
+        (0, common_1.Patch)(':id'),
+        __param(0, (0, common_1.Param)('id')),
+        __param(1, (0, common_1.Body)()),
+        __metadata("design:type", Function),
+        __metadata("design:paramtypes", [Number, Object]),
+        __metadata("design:returntype", Promise)
+    ], OrderController.prototype, "updateOrder", null);
+    __decorate([
+        (0, common_1.Delete)(':id'),
+        __param(0, (0, common_1.Param)('id')),
+        __metadata("design:type", Function),
+        __metadata("design:paramtypes", [Number]),
+        __metadata("design:returntype", Promise)
+    ], OrderController.prototype, "deleteOrder", null);
+    OrderController = __decorate([
         (0, common_1.Controller)('order'),
-        __metadata("design:paramtypes", [orders_service_1.OrdersService])
-    ], OrdersController);
-    return OrdersController;
+        __metadata("design:paramtypes", [orders_service_1.OrderService])
+    ], OrderController);
+    return OrderController;
 }());
-exports.OrdersController = OrdersController;
+exports.OrderController = OrderController;

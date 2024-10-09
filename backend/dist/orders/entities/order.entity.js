@@ -20,13 +20,21 @@ var Order = /** @class */ (function () {
         __metadata("design:type", Number)
     ], Order.prototype, "id", void 0);
     __decorate([
-        (0, typeorm_1.Column)({ type: 'timestamp', default: function () { return 'CURRENT_TIMESTAMP'; } }),
-        __metadata("design:type", Date)
-    ], Order.prototype, "created_at", void 0);
+        (0, typeorm_1.Column)({ name: 'total_price', type: 'decimal', precision: 10, scale: 2 }),
+        __metadata("design:type", Number)
+    ], Order.prototype, "totalPrice", void 0);
     __decorate([
-        (0, typeorm_1.OneToMany)(function () { return order_item_entity_1.OrderItem; }, function (orderItem) { return orderItem.order; }, { cascade: true }),
+        (0, typeorm_1.Column)({
+            name: 'created_at',
+            type: 'timestamp',
+            default: function () { return 'CURRENT_TIMESTAMP'; },
+        }),
+        __metadata("design:type", Date)
+    ], Order.prototype, "createdAt", void 0);
+    __decorate([
+        (0, typeorm_1.OneToMany)(function () { return order_item_entity_1.OrderItem; }, function (orderItem) { return orderItem.order; }),
         __metadata("design:type", Array)
-    ], Order.prototype, "items", void 0);
+    ], Order.prototype, "orderItems", void 0);
     Order = __decorate([
         (0, typeorm_1.Entity)('order')
     ], Order);

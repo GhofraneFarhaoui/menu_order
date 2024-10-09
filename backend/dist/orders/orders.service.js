@@ -48,58 +48,113 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.OrdersService = void 0;
+exports.OrderService = void 0;
 var common_1 = require("@nestjs/common");
 var typeorm_1 = require("@nestjs/typeorm");
 var typeorm_2 = require("typeorm");
 var order_entity_1 = require("./entities/order.entity");
 var order_item_entity_1 = require("./entities/order-item.entity");
-var OrdersService = /** @class */ (function () {
-    function OrdersService(orderRepository, orderItemRepository) {
+var OrderService = /** @class */ (function () {
+    function OrderService(orderRepository, orderItemRepository) {
         this.orderRepository = orderRepository;
         this.orderItemRepository = orderItemRepository;
     }
-    OrdersService.prototype.createOrder = function (items) {
+    OrderService.prototype.createOrder = function (createOrderDto) {
         return __awaiter(this, void 0, void 0, function () {
-            var order, _i, items_1, item, orderItem, error_1;
+            var total_price, items, newOrder, savedOrder, _i, items_1, item, orderItem;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        _a.trys.push([0, 2, , 3]);
-                        order = new order_entity_1.Order();
-                        order.items = [];
-                        for (_i = 0, items_1 = items; _i < items_1.length; _i++) {
-                            item = items_1[_i];
-                            orderItem = new order_item_entity_1.OrderItem();
-                            orderItem.menuItem = { id: item.menuItemId };
-                            orderItem.quantity = item.quantity;
-                            order.items.push(orderItem);
-                        }
-                        return [4 /*yield*/, this.orderRepository.save(order)];
-                    case 1: return [2 /*return*/, _a.sent()];
+                        total_price = createOrderDto.total_price, items = createOrderDto.items;
+                        newOrder = this.orderRepository.create({
+                            totalPrice: total_price,
+                            createdAt: new Date(),
+                        });
+                        return [4 /*yield*/, this.orderRepository.save(newOrder)];
+                    case 1:
+                        savedOrder = _a.sent();
+                        _i = 0, items_1 = items;
+                        _a.label = 2;
                     case 2:
-                        error_1 = _a.sent();
-                        console.error('Error creating order:', error_1);
-                        throw error_1;
-                    case 3: return [2 /*return*/];
+                        if (!(_i < items_1.length)) return [3 /*break*/, 5];
+                        item = items_1[_i];
+                        orderItem = this.orderItemRepository.create({
+                            order: savedOrder,
+                            menuItem: { id: item.menuItem },
+                            quantity: item.quantity,
+                        });
+                        return [4 /*yield*/, this.orderItemRepository.save(orderItem)];
+                    case 3:
+                        _a.sent();
+                        _a.label = 4;
+                    case 4:
+                        _i++;
+                        return [3 /*break*/, 2];
+                    case 5: return [2 /*return*/, savedOrder];
                 }
             });
         });
     };
-    OrdersService.prototype.getAllOrders = function () {
+    OrderService.prototype.getAllOrders = function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                return [2 /*return*/, this.orderRepository.find({ relations: ['items'] })];
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.orderRepository.find({ relations: ['orderItems'] })];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
             });
         });
     };
-    OrdersService = __decorate([
+    OrderService.prototype.getOrderById = function (id) {
+        return __awaiter(this, void 0, void 0, function () {
+            var order;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.orderRepository.findOne({
+                            where: { id: id },
+                            relations: ['orderItems'],
+                        })];
+                    case 1:
+                        order = _a.sent();
+                        if (!order) {
+                            throw new Error("Order with ID ".concat(id, " not found"));
+                        }
+                        return [2 /*return*/, order];
+                }
+            });
+        });
+    };
+    OrderService.prototype.updateOrder = function (id, updateData) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.orderRepository.update(id, updateData)];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/, this.getOrderById(id)];
+                }
+            });
+        });
+    };
+    OrderService.prototype.deleteOrder = function (id) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.orderRepository.delete(id)];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    OrderService = __decorate([
         (0, common_1.Injectable)(),
         __param(0, (0, typeorm_1.InjectRepository)(order_entity_1.Order)),
         __param(1, (0, typeorm_1.InjectRepository)(order_item_entity_1.OrderItem)),
         __metadata("design:paramtypes", [typeorm_2.Repository,
             typeorm_2.Repository])
-    ], OrdersService);
-    return OrdersService;
+    ], OrderService);
+    return OrderService;
 }());
-exports.OrdersService = OrdersService;
+exports.OrderService = OrderService;

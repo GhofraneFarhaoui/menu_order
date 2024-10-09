@@ -1,12 +1,12 @@
-import { OrdersService } from './orders.service';
-export declare class OrdersController {
+import { OrderService } from './orders.service';
+import { Order } from './entities/order.entity';
+import { CreateOrderDto } from './create-order.dto';
+export declare class OrderController {
     private readonly orderService;
-    constructor(orderService: OrdersService);
-    createOrder(body: {
-        items: {
-            menuItemId: number;
-            quantity: number;
-        }[];
-    }): Promise<import("./entities/order.entity").Order>;
-    getAllOrders(): Promise<import("./entities/order.entity").Order[]>;
+    constructor(orderService: OrderService);
+    createOrder(createOrderDto: CreateOrderDto): Promise<Order>;
+    getAllOrders(): Promise<Order[]>;
+    getOrderById(id: number): Promise<Order>;
+    updateOrder(id: number, updateData: Partial<Order>): Promise<Order>;
+    deleteOrder(id: number): Promise<void>;
 }

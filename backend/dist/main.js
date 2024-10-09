@@ -46,7 +46,6 @@ function bootstrap() {
                 case 0: return [4 /*yield*/, core_1.NestFactory.create(app_module_1.AppModule)];
                 case 1:
                     app = _a.sent();
-                    // Enable CORS
                     app.enableCors({
                         origin: 'http://localhost:3001',
                         methods: 'GET,POST,PUT,DELETE,OPTIONS',
