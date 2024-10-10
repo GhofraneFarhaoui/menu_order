@@ -7,6 +7,8 @@ import { Category } from './category/entities/category.entity';
 import { OrdersModule } from './orders/orders.module';
 import { Order } from './orders/entities/order.entity';
 import { OrderItem } from './orders/entities/order-item.entity';
+import { AuthModule } from './auth/auth.module';
+import { AdminModule } from './admin/admin.module';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
@@ -18,11 +20,13 @@ import { OrderItem } from './orders/entities/order-item.entity';
       database: 'menu_order_app',
       entities: [MenuItem, Category, Order, OrderItem],
       migrations: ['src/migrations/*.ts'],
-      synchronize: false,
+      synchronize: true,
     }),
     CategoriesModule,
     MenuItemsModule,
     OrdersModule,
+    AuthModule,
+    AdminModule,
   ],
 })
 export class AppModule {}
