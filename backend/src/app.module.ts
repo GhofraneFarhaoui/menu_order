@@ -9,6 +9,7 @@ import { Order } from './orders/entities/order.entity';
 import { OrderItem } from './orders/entities/order-item.entity';
 import { AuthModule } from './auth/auth.module';
 import { AdminModule } from './admin/admin.module';
+import { UserModule } from './user/user.module';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
@@ -27,6 +28,7 @@ import { AdminModule } from './admin/admin.module';
     OrdersModule,
     AuthModule,
     AdminModule,
+    UserModule,
   ],
 })
 export class AppModule {}
