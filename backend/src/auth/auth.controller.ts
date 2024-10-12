@@ -1,6 +1,7 @@
 import { Controller, Post, Body, UseGuards, Request } from '@nestjs/common';
 import { AuthService } from './auth.service';
-import { LocalAuthGuard } from './local-auth.guard';
+import { Roles } from '../auth/roles.decorator';
+
 import { UnauthorizedException } from '@nestjs/common';
 
 @Controller('auth')

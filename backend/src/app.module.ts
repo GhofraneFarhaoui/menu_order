@@ -8,7 +8,6 @@ import { OrdersModule } from './orders/orders.module';
 import { Order } from './orders/entities/order.entity';
 import { OrderItem } from './orders/entities/order-item.entity';
 import { AuthModule } from './auth/auth.module';
-import { AdminModule } from './admin/admin.module';
 import { UserModule } from './user/user.module';
 @Module({
   imports: [
@@ -21,13 +20,12 @@ import { UserModule } from './user/user.module';
       database: 'menu_order_app',
       entities: [MenuItem, Category, Order, OrderItem],
       migrations: ['src/migrations/*.ts'],
-      synchronize: true,
+      synchronize: false,
     }),
     CategoriesModule,
     MenuItemsModule,
     OrdersModule,
     AuthModule,
-    AdminModule,
     UserModule,
   ],
 })

@@ -16,6 +16,8 @@ var category_entity_1 = require("./category/entities/category.entity");
 var orders_module_1 = require("./orders/orders.module");
 var order_entity_1 = require("./orders/entities/order.entity");
 var order_item_entity_1 = require("./orders/entities/order-item.entity");
+var auth_module_1 = require("./auth/auth.module");
+var user_module_1 = require("./user/user.module");
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -36,6 +38,8 @@ var AppModule = /** @class */ (function () {
                 category_module_1.CategoriesModule,
                 menu_items_module_1.MenuItemsModule,
                 orders_module_1.OrdersModule,
+                auth_module_1.AuthModule,
+                user_module_1.UserModule,
             ],
         })
     ], AppModule);
