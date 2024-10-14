@@ -7,21 +7,18 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CategoriesModule = void 0;
-var common_1 = require("@nestjs/common");
-var typeorm_1 = require("@nestjs/typeorm");
-var category_entity_1 = require("./entities/category.entity");
-var category_service_1 = require("./category.service");
-var category_controller_1 = require("./category.controller");
-var CategoriesModule = /** @class */ (function () {
-    function CategoriesModule() {
-    }
-    CategoriesModule = __decorate([
-        (0, common_1.Module)({
-            imports: [typeorm_1.TypeOrmModule.forFeature([category_entity_1.Category])],
-            providers: [category_service_1.CategoryService],
-            controllers: [category_controller_1.CategoryController],
-        })
-    ], CategoriesModule);
-    return CategoriesModule;
-}());
+const common_1 = require("@nestjs/common");
+const typeorm_1 = require("@nestjs/typeorm");
+const category_entity_1 = require("./entities/category.entity");
+const category_service_1 = require("./category.service");
+const category_controller_1 = require("./category.controller");
+let CategoriesModule = class CategoriesModule {
+};
+CategoriesModule = __decorate([
+    (0, common_1.Module)({
+        imports: [typeorm_1.TypeOrmModule.forFeature([category_entity_1.Category])],
+        providers: [category_service_1.CategoryService],
+        controllers: [category_controller_1.CategoryController],
+    })
+], CategoriesModule);
 exports.CategoriesModule = CategoriesModule;

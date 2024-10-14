@@ -10,36 +10,30 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateOrderDto = void 0;
-var class_validator_1 = require("class-validator");
-var class_transformer_1 = require("class-transformer");
-var OrderItemDto = /** @class */ (function () {
-    function OrderItemDto() {
-    }
-    __decorate([
-        (0, class_validator_1.IsNotEmpty)(),
-        __metadata("design:type", Number)
-    ], OrderItemDto.prototype, "menuItem", void 0);
-    __decorate([
-        (0, class_validator_1.IsNotEmpty)(),
-        (0, class_validator_1.IsNumber)(),
-        __metadata("design:type", Number)
-    ], OrderItemDto.prototype, "quantity", void 0);
-    return OrderItemDto;
-}());
-var CreateOrderDto = /** @class */ (function () {
-    function CreateOrderDto() {
-    }
-    __decorate([
-        (0, class_validator_1.IsNotEmpty)(),
-        (0, class_validator_1.IsNumber)(),
-        __metadata("design:type", Number)
-    ], CreateOrderDto.prototype, "total_price", void 0);
-    __decorate([
-        (0, class_validator_1.IsArray)(),
-        (0, class_validator_1.ValidateNested)({ each: true }),
-        (0, class_transformer_1.Type)(function () { return OrderItemDto; }),
-        __metadata("design:type", Array)
-    ], CreateOrderDto.prototype, "items", void 0);
-    return CreateOrderDto;
-}());
+const class_validator_1 = require("class-validator");
+const class_transformer_1 = require("class-transformer");
+class OrderItemDto {
+}
+__decorate([
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], OrderItemDto.prototype, "menuItem", void 0);
+__decorate([
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.IsNumber)(),
+    __metadata("design:type", Number)
+], OrderItemDto.prototype, "quantity", void 0);
+class CreateOrderDto {
+}
+__decorate([
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.IsNumber)(),
+    __metadata("design:type", Number)
+], CreateOrderDto.prototype, "total_price", void 0);
+__decorate([
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.ValidateNested)({ each: true }),
+    (0, class_transformer_1.Type)(() => OrderItemDto),
+    __metadata("design:type", Array)
+], CreateOrderDto.prototype, "items", void 0);
 exports.CreateOrderDto = CreateOrderDto;

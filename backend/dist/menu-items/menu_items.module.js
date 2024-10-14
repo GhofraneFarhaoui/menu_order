@@ -7,22 +7,19 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.MenuItemsModule = void 0;
-var common_1 = require("@nestjs/common");
-var typeorm_1 = require("@nestjs/typeorm");
-var menu_items_entity_1 = require("./entities/menu_items.entity");
-var menu_items_service_1 = require("./menu_items.service");
-var menu_items_controller_1 = require("./menu_items.controller");
-var MenuItemsModule = /** @class */ (function () {
-    function MenuItemsModule() {
-    }
-    MenuItemsModule = __decorate([
-        (0, common_1.Module)({
-            imports: [typeorm_1.TypeOrmModule.forFeature([menu_items_entity_1.MenuItem])],
-            providers: [menu_items_service_1.MenuItemsService],
-            controllers: [menu_items_controller_1.MenuItemsController],
-            exports: [menu_items_service_1.MenuItemsService, typeorm_1.TypeOrmModule],
-        })
-    ], MenuItemsModule);
-    return MenuItemsModule;
-}());
+const common_1 = require("@nestjs/common");
+const typeorm_1 = require("@nestjs/typeorm");
+const menu_items_entity_1 = require("./entities/menu_items.entity");
+const menu_items_service_1 = require("./menu_items.service");
+const menu_items_controller_1 = require("./menu_items.controller");
+let MenuItemsModule = class MenuItemsModule {
+};
+MenuItemsModule = __decorate([
+    (0, common_1.Module)({
+        imports: [typeorm_1.TypeOrmModule.forFeature([menu_items_entity_1.MenuItem])],
+        providers: [menu_items_service_1.MenuItemsService],
+        controllers: [menu_items_controller_1.MenuItemsController],
+        exports: [menu_items_service_1.MenuItemsService, typeorm_1.TypeOrmModule],
+    })
+], MenuItemsModule);
 exports.MenuItemsModule = MenuItemsModule;

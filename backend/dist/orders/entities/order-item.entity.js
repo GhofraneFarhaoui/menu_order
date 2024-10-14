@@ -10,31 +10,28 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.OrderItem = void 0;
-var typeorm_1 = require("typeorm");
-var order_entity_1 = require("./order.entity");
-var menu_items_entity_1 = require("../../menu-items/entities/menu_items.entity");
-var OrderItem = /** @class */ (function () {
-    function OrderItem() {
-    }
-    __decorate([
-        (0, typeorm_1.PrimaryGeneratedColumn)(),
-        __metadata("design:type", Number)
-    ], OrderItem.prototype, "id", void 0);
-    __decorate([
-        (0, typeorm_1.ManyToOne)(function () { return order_entity_1.Order; }, function (order) { return order.orderItems; }),
-        __metadata("design:type", order_entity_1.Order)
-    ], OrderItem.prototype, "order", void 0);
-    __decorate([
-        (0, typeorm_1.ManyToOne)(function () { return menu_items_entity_1.MenuItem; }),
-        __metadata("design:type", menu_items_entity_1.MenuItem)
-    ], OrderItem.prototype, "menuItem", void 0);
-    __decorate([
-        (0, typeorm_1.Column)({ type: 'int' }),
-        __metadata("design:type", Number)
-    ], OrderItem.prototype, "quantity", void 0);
-    OrderItem = __decorate([
-        (0, typeorm_1.Entity)('order_item')
-    ], OrderItem);
-    return OrderItem;
-}());
+const typeorm_1 = require("typeorm");
+const order_entity_1 = require("./order.entity");
+const menu_items_entity_1 = require("../../menu-items/entities/menu_items.entity");
+let OrderItem = class OrderItem {
+};
+__decorate([
+    (0, typeorm_1.PrimaryGeneratedColumn)(),
+    __metadata("design:type", Number)
+], OrderItem.prototype, "id", void 0);
+__decorate([
+    (0, typeorm_1.ManyToOne)(() => order_entity_1.Order, (order) => order.orderItems),
+    __metadata("design:type", order_entity_1.Order)
+], OrderItem.prototype, "order", void 0);
+__decorate([
+    (0, typeorm_1.ManyToOne)(() => menu_items_entity_1.MenuItem),
+    __metadata("design:type", menu_items_entity_1.MenuItem)
+], OrderItem.prototype, "menuItem", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ type: 'int' }),
+    __metadata("design:type", Number)
+], OrderItem.prototype, "quantity", void 0);
+OrderItem = __decorate([
+    (0, typeorm_1.Entity)('order_item')
+], OrderItem);
 exports.OrderItem = OrderItem;

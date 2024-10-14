@@ -10,34 +10,31 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Order = void 0;
-var typeorm_1 = require("typeorm");
-var order_item_entity_1 = require("./order-item.entity");
-var Order = /** @class */ (function () {
-    function Order() {
-    }
-    __decorate([
-        (0, typeorm_1.PrimaryGeneratedColumn)(),
-        __metadata("design:type", Number)
-    ], Order.prototype, "id", void 0);
-    __decorate([
-        (0, typeorm_1.Column)({ name: 'total_price', type: 'decimal', precision: 10, scale: 2 }),
-        __metadata("design:type", Number)
-    ], Order.prototype, "totalPrice", void 0);
-    __decorate([
-        (0, typeorm_1.Column)({
-            name: 'created_at',
-            type: 'timestamp',
-            default: function () { return 'CURRENT_TIMESTAMP'; },
-        }),
-        __metadata("design:type", Date)
-    ], Order.prototype, "createdAt", void 0);
-    __decorate([
-        (0, typeorm_1.OneToMany)(function () { return order_item_entity_1.OrderItem; }, function (orderItem) { return orderItem.order; }),
-        __metadata("design:type", Array)
-    ], Order.prototype, "orderItems", void 0);
-    Order = __decorate([
-        (0, typeorm_1.Entity)('order')
-    ], Order);
-    return Order;
-}());
+const typeorm_1 = require("typeorm");
+const order_item_entity_1 = require("./order-item.entity");
+let Order = class Order {
+};
+__decorate([
+    (0, typeorm_1.PrimaryGeneratedColumn)(),
+    __metadata("design:type", Number)
+], Order.prototype, "id", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ name: 'total_price', type: 'decimal', precision: 10, scale: 2 }),
+    __metadata("design:type", Number)
+], Order.prototype, "totalPrice", void 0);
+__decorate([
+    (0, typeorm_1.Column)({
+        name: 'created_at',
+        type: 'timestamp',
+        default: () => 'CURRENT_TIMESTAMP',
+    }),
+    __metadata("design:type", Date)
+], Order.prototype, "createdAt", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(() => order_item_entity_1.OrderItem, (orderItem) => orderItem.order),
+    __metadata("design:type", Array)
+], Order.prototype, "orderItems", void 0);
+Order = __decorate([
+    (0, typeorm_1.Entity)('order')
+], Order);
 exports.Order = Order;

@@ -10,27 +10,25 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.RolesGuard = void 0;
-var common_1 = require("@nestjs/common");
-var core_1 = require("@nestjs/core");
-var RolesGuard = /** @class */ (function () {
-    function RolesGuard(reflector) {
+const common_1 = require("@nestjs/common");
+const core_1 = require("@nestjs/core");
+const roles_decorator_1 = require("./roles.decorator");
+let RolesGuard = class RolesGuard {
+    constructor(reflector) {
         this.reflector = reflector;
     }
-    RolesGuard.prototype.canActivate = function (context) {
-        var requiredRoles = this.reflector.getAllAndOverride('roles', [
-            context.getHandler(),
-            context.getClass(),
-        ]);
-        if (!requiredRoles) {
+    canActivate(context) {
+        const roles = this.reflector.get(roles_decorator_1.ROLES_KEY, context.getHandler());
+        if (!roles) {
             return true;
         }
-        var user = context.switchToHttp().getRequest().user;
-        return requiredRoles.some(function (role) { var _a; return (_a = user.role) === null || _a === void 0 ? void 0 : _a.includes(role); });
-    };
-    RolesGuard = __decorate([
-        (0, common_1.Injectable)(),
-        __metadata("design:paramtypes", [core_1.Reflector])
-    ], RolesGuard);
-    return RolesGuard;
-}());
+        const request = context.switchToHttp().getRequest();
+        const user = request.user;
+        return roles.includes(user.role); // nshuf if the user has the required role
+    }
+};
+RolesGuard = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [core_1.Reflector])
+], RolesGuard);
 exports.RolesGuard = RolesGuard;

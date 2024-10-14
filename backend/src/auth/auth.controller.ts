@@ -1,7 +1,5 @@
 import { Controller, Post, Body, UseGuards, Request } from '@nestjs/common';
 import { AuthService } from './auth.service';
-import { Roles } from '../auth/roles.decorator';
-
 import { UnauthorizedException } from '@nestjs/common';
 
 @Controller('auth')
