@@ -4,10 +4,7 @@ import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 import { JwtStrategy } from './jwt.strategy';
 import { UserModule } from '../user/user.module';
-import { LinkedInStrategy } from './linkedin.strategy';
-import { FacebookStrategy } from './facebook.strategy';
-import { GoogleStrategy } from './googl.tsrategy';
-import { UserService } from '../user/user.service';
+import { AuthController } from './auth.controller';
 
 @Module({
   imports: [
@@ -18,14 +15,8 @@ import { UserService } from '../user/user.service';
       signOptions: { expiresIn: '60m' },
     }),
   ],
-  providers: [
-    AuthService,
-    UserService,
-    JwtStrategy,
-    FacebookStrategy,
-    GoogleStrategy,
-    LinkedInStrategy,
-  ],
+  controllers: [AuthController],
+  providers: [AuthService, JwtStrategy],
   exports: [AuthService],
 })
 export class AuthModule {}

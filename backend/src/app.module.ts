@@ -6,6 +6,7 @@ import { MenuItem } from './menu-items/entities/menu_items.entity';
 import { Category } from './category/entities/category.entity';
 import { OrdersModule } from './orders/orders.module';
 import { Order } from './orders/entities/order.entity';
+import { User } from './user/entities/user.entity';
 import { OrderItem } from './orders/entities/order-item.entity';
 import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
@@ -18,8 +19,7 @@ import { UserModule } from './user/user.module';
       username: 'postgres',
       password: 'ghof123',
       database: 'menu_order_app',
-      entities: [MenuItem, Category, Order, OrderItem],
-      migrations: ['src/migrations/*.ts'],
+      entities: [MenuItem, Category, Order, OrderItem, User],
       synchronize: false,
     }),
     CategoriesModule,

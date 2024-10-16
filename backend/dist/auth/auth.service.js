@@ -56,9 +56,15 @@ let AuthService = class AuthService {
     validateUser(username, password) {
         return __awaiter(this, void 0, void 0, function* () {
             const user = yield this.userService.findByUsername(username);
-            // comparing the enter passwd with the hashed passwd in the db
-            if (user && (yield bcrypt.compare(password, user.password))) {
-                return { id: user.id, username: user.username, role: user.role }; // comparing the username and passwd against what’s stored in the db
+            console.log('User found:', user); // Debug logging
+            if (!user) {
+                console.log('User not found');
+                return null; // No user found
+            }
+            const isPasswordValid = yield bcrypt.compare(password, user.password);
+            console.log('Password valid:', isPasswordValid); // Debug logging
+            if (isPasswordValid) {
+                return { id: user.id, username: user.username, role: user.role };
             }
             return null;
         });
