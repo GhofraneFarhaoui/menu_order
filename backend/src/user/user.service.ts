@@ -11,6 +11,7 @@ export class UserService {
     private readonly userRepository: Repository<User>
   ) {}
 
+  // Create a new user with hashed passwd
   async create(
     username: string,
     password: string,
@@ -19,10 +20,10 @@ export class UserService {
     const hashedPassword = await bcrypt.hash(password, 10);
     const newUser = this.userRepository.create({
       username,
-      password: hashedPassword,
+      password: hashedPassword, //yrajaalna hashed passwd
       role,
     });
-    return this.userRepository.save(newUser);
+    return this.userRepository.save(newUser); //ysavih f db
   }
 
   async findByUsername(username: string): Promise<User | null> {

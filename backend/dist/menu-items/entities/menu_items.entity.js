@@ -19,8 +19,7 @@ __decorate([
     __metadata("design:type", Number)
 ], MenuItem.prototype, "id", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ nullable: false }) // Ensure 'name' is not nullable
-    ,
+    (0, typeorm_1.Column)({ nullable: true }),
     __metadata("design:type", String)
 ], MenuItem.prototype, "name", void 0);
 __decorate([

@@ -6,7 +6,7 @@ export class MenuItem {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ nullable: false }) // Ensure 'name' is not nullable
+  @Column({ nullable: true })
   name: string;
 
   @Column('text', { nullable: true })

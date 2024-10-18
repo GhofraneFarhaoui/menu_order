@@ -54,6 +54,7 @@ let UserService = class UserService {
     constructor(userRepository) {
         this.userRepository = userRepository;
     }
+    // Create a new user with hashed passwd
     create(username, password, role) {
         return __awaiter(this, void 0, void 0, function* () {
             const hashedPassword = yield bcrypt.hash(password, 10);
@@ -62,7 +63,7 @@ let UserService = class UserService {
                 password: hashedPassword,
                 role,
             });
-            return this.userRepository.save(newUser);
+            return this.userRepository.save(newUser); //ysavih f db
         });
     }
     findByUsername(username) {

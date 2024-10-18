@@ -5,7 +5,7 @@ import { RolesGuard } from '../auth/roles.guard';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 
 @Controller('user')
-@UseGuards(JwtAuthGuard, RolesGuard)
+@UseGuards(JwtAuthGuard, RolesGuard) //role guardextracts the user's role from the JWT payload
 export class UserController {
   constructor(private userService: UserService) {}
 

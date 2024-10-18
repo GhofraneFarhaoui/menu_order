@@ -32,7 +32,7 @@ AppModule = __decorate([
                 password: 'ghof123',
                 database: 'menu_order_app',
                 entities: [menu_items_entity_1.MenuItem, category_entity_1.Category, order_entity_1.Order, order_item_entity_1.OrderItem, user_entity_1.User],
-                synchronize: false,
+                synchronize: true,
             }),
             category_module_1.CategoriesModule,
             menu_items_module_1.MenuItemsModule,
