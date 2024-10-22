@@ -20,7 +20,7 @@ import { UserModule } from './user/user.module';
       password: 'ghof123',
       database: 'menu_order_app',
       entities: [MenuItem, Category, Order, OrderItem, User],
-      synchronize: true,
+      synchronize: false,
     }),
     CategoriesModule,
     MenuItemsModule,

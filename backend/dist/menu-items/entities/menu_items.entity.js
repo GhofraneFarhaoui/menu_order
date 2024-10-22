@@ -19,11 +19,11 @@ __decorate([
     __metadata("design:type", Number)
 ], MenuItem.prototype, "id", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ nullable: true }),
+    (0, typeorm_1.Column)({ nullable: false }),
     __metadata("design:type", String)
 ], MenuItem.prototype, "name", void 0);
 __decorate([
-    (0, typeorm_1.Column)('text', { nullable: true }),
+    (0, typeorm_1.Column)('text', { nullable: false }),
     __metadata("design:type", String)
 ], MenuItem.prototype, "description", void 0);
 __decorate([
@@ -31,7 +31,7 @@ __decorate([
     __metadata("design:type", Number)
 ], MenuItem.prototype, "price", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ nullable: true }),
+    (0, typeorm_1.Column)({ nullable: false }),
     __metadata("design:type", String)
 ], MenuItem.prototype, "image_url", void 0);
 __decorate([

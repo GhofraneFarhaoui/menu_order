@@ -6,16 +6,16 @@ export class MenuItem {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ nullable: true })
+  @Column({ nullable: false })
   name: string;
 
-  @Column('text', { nullable: true })
+  @Column('text', { nullable: false })
   description: string;
 
   @Column('decimal')
   price: number;
 
-  @Column({ nullable: true })
+  @Column({ nullable: false })
   image_url: string;
 
   @ManyToOne(() => Category, (category) => category.menuItems)

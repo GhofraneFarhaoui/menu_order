@@ -6,10 +6,10 @@ export class Category {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ nullable: true })
+  @Column({ nullable: false })
   name: string;
 
-  @Column({ type: 'varchar', nullable: true })
+  @Column({ type: 'varchar', nullable: false })
   image_url: string;
 
   @OneToMany(() => MenuItem, (menuItem) => menuItem.category)

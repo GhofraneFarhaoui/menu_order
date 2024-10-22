@@ -24,9 +24,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserController = void 0;
 const common_1 = require("@nestjs/common");
 const user_service_1 = require("./user.service");
-//import { Roles } from '../auth/roles.decorator';
-//import { RolesGuard } from '../auth/roles.guard';
-//import { JwtAuthGuard } from '../auth/jwt-auth.guard';
+const roles_decorator_1 = require("../auth/roles.decorator");
+const roles_guard_1 = require("../auth/roles.guard");
+const jwt_auth_guard_1 = require("../auth/jwt-auth.guard");
 let UserController = class UserController {
     constructor(userService) {
         this.userService = userService;
@@ -38,8 +38,8 @@ let UserController = class UserController {
     }
 };
 __decorate([
-    (0, common_1.Post)('create')
-    //@Roles('admin') // Only admin can access this endpoint
+    (0, common_1.Post)('create'),
+    (0, roles_decorator_1.Roles)('admin') // Only admin can access this endpoint
     ,
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
@@ -47,8 +47,8 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], UserController.prototype, "create", null);
 UserController = __decorate([
-    (0, common_1.Controller)('user')
-    //@UseGuards(JwtAuthGuard, RolesGuard) //role guardextracts the user's role from the JWT payload
+    (0, common_1.Controller)('user'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard, roles_guard_1.RolesGuard) //role guardextracts the user's role from the JWT payload
     ,
     __metadata("design:paramtypes", [user_service_1.UserService])
 ], UserController);

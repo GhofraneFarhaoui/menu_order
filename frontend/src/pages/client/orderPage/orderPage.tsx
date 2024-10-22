@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+
 import axios from 'axios';
 import styles from './orderPage.module.css';
 import Header from '../../../components/header';
