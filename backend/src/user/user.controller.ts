@@ -3,6 +3,7 @@ import { UserService } from './user.service';
 import { Roles } from '../auth/roles.decorator';
 import { RolesGuard } from '../auth/roles.guard';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
+import { CreateUserDto } from './create-user.dto';
 
 @Controller('user')
 @UseGuards(JwtAuthGuard, RolesGuard) //role guardextracts the user's role from the JWT payload
