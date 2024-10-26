@@ -14,9 +14,5 @@ export class CreateOrderDto {
   @IsNotEmpty()
   @IsNumber()
   total_price: number;
-
-  @IsArray()
-  @ValidateNested({ each: true })
-  @Type(() => OrderItemDto)
-  items: OrderItemDto[];
+  items: { menuItemId: number; quantity: number }[];
 }

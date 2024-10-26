@@ -19,7 +19,13 @@ __decorate([
     __metadata("design:type", Number)
 ], Order.prototype, "id", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ name: 'total_price', type: 'decimal', precision: 10, scale: 2 }),
+    (0, typeorm_1.Column)({
+        name: 'total_price',
+        type: 'decimal',
+        precision: 10,
+        scale: 2,
+        nullable: false,
+    }),
     __metadata("design:type", Number)
 ], Order.prototype, "totalPrice", void 0);
 __decorate([
@@ -29,7 +35,7 @@ __decorate([
         default: () => 'CURRENT_TIMESTAMP',
     }),
     __metadata("design:type", Date)
-], Order.prototype, "createdAt", void 0);
+], Order.prototype, "created_at", void 0);
 __decorate([
     (0, typeorm_1.OneToMany)(() => order_item_entity_1.OrderItem, (orderItem) => orderItem.order),
     __metadata("design:type", Array)

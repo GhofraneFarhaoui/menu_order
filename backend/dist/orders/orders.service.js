@@ -37,13 +37,13 @@ let OrderService = class OrderService {
             const { total_price, items } = createOrderDto;
             const newOrder = this.orderRepository.create({
                 totalPrice: total_price,
-                createdAt: new Date(),
+                created_at: new Date(),
             });
             const savedOrder = yield this.orderRepository.save(newOrder);
             for (const item of items) {
                 const orderItem = this.orderItemRepository.create({
                     order: savedOrder,
-                    menuItem: { id: item.menuItem },
+                    menuItem: { id: item.menuItemId },
                     quantity: item.quantity,
                 });
                 yield this.orderItemRepository.save(orderItem);

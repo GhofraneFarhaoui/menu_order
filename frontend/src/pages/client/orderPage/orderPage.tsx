@@ -14,7 +14,7 @@ interface CartItem {
 
 const OrderPage: React.FC = () => {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
-  const [totalPrice, setTotalPrice] = useState<number>(0);
+  const [total_price, setTotalPrice] = useState<number>(0);
 
   useEffect(() => {
     const loadCart = async () => {
@@ -55,6 +55,7 @@ const OrderPage: React.FC = () => {
   const handleConfirm = async () => {
     try {
       const response = await axios.post('http://localhost:3000/order', {
+        total_price: total_price,
         items: cartItems.map((item) => ({
           menuItemId: item.id,
           quantity: item.quantity,
@@ -103,7 +104,7 @@ const OrderPage: React.FC = () => {
         )}
 
         <div className={styles.totalPrice}>
-          <h2>Prix Total: {totalPrice.toFixed(2)} D</h2>
+          <h2>Prix Total: {total_price.toFixed(2)} D</h2>
         </div>
 
         <div className={styles.buttonsContainer}>

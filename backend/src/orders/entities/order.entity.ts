@@ -6,7 +6,13 @@ export class Order {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ name: 'total_price', type: 'decimal', precision: 10, scale: 2 })
+  @Column({
+    name: 'total_price',
+    type: 'decimal',
+    precision: 10,
+    scale: 2,
+    nullable: false,
+  })
   totalPrice: number;
 
   @Column({
@@ -14,7 +20,7 @@ export class Order {
     type: 'timestamp',
     default: () => 'CURRENT_TIMESTAMP',
   })
-  createdAt: Date;
+  created_at: Date;
 
   @OneToMany(() => OrderItem, (orderItem) => orderItem.order)
   orderItems: OrderItem[];

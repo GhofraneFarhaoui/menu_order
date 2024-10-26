@@ -19,7 +19,7 @@ export class OrderService {
 
     const newOrder = this.orderRepository.create({
       totalPrice: total_price,
-      createdAt: new Date(),
+      created_at: new Date(),
     });
 
     const savedOrder = await this.orderRepository.save(newOrder);
@@ -27,7 +27,7 @@ export class OrderService {
     for (const item of items) {
       const orderItem = this.orderItemRepository.create({
         order: savedOrder,
-        menuItem: { id: item.menuItem },
+        menuItem: { id: item.menuItemId },
         quantity: item.quantity,
       });
       await this.orderItemRepository.save(orderItem);
