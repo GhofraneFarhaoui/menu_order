@@ -1,7 +1,7 @@
 import { Controller, Get, Param } from '@nestjs/common';
 import { MenuItemsService } from './menu_items.service';
 
-@Controller('menu-items') // Must match the route you're using in the URL
+@Controller('menu_items')
 export class MenuItemsController {
   constructor(private readonly menuItemsService: MenuItemsService) {}
 

@@ -53,8 +53,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], MenuItemsController.prototype, "findByCategory", null);
 MenuItemsController = __decorate([
-    (0, common_1.Controller)('menu-items') // Must match the route you're using in the URL
-    ,
+    (0, common_1.Controller)('menu_items'),
     __metadata("design:paramtypes", [menu_items_service_1.MenuItemsService])
 ], MenuItemsController);
 exports.MenuItemsController = MenuItemsController;

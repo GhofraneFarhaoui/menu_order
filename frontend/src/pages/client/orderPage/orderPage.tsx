@@ -22,7 +22,7 @@ const OrderPage: React.FC = () => {
 
       if (Object.keys(savedCart).length > 0) {
         try {
-          const response = await axios.get('http://localhost:3000/menu-items');
+          const response = await axios.get('http://localhost:3000/menu_items');
           const allItems = response.data;
 
           const cartWithDetails = Object.keys(savedCart).map((id) => {

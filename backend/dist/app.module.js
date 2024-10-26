@@ -9,6 +9,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppModule = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
+const config_1 = require("@nestjs/config");
 const menu_items_module_1 = require("./menu-items/menu_items.module");
 const category_module_1 = require("./category/category.module");
 const menu_items_entity_1 = require("./menu-items/entities/menu_items.entity");
@@ -24,15 +25,23 @@ let AppModule = class AppModule {
 AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
-            typeorm_1.TypeOrmModule.forRoot({
-                type: 'postgres',
-                host: 'localhost',
-                port: 5433,
-                username: 'postgres',
-                password: 'ghof123',
-                database: 'menu_order_app',
-                entities: [menu_items_entity_1.MenuItem, category_entity_1.Category, order_entity_1.Order, order_item_entity_1.OrderItem, user_entity_1.User],
-                synchronize: false,
+            config_1.ConfigModule.forRoot({
+                isGlobal: true,
+            }),
+            typeorm_1.TypeOrmModule.forRootAsync({
+                imports: [config_1.ConfigModule],
+                inject: [config_1.ConfigService],
+                useFactory: (configService) => ({
+                    type: 'postgres',
+                    host: 'localhost',
+                    port: 5433,
+                    username: 'postgres',
+                    password: 'ghof123',
+                    database: 'menu_order_app',
+                    entities: [menu_items_entity_1.MenuItem, category_entity_1.Category, order_entity_1.Order, order_item_entity_1.OrderItem, user_entity_1.User],
+                    synchronize: false,
+                    logging: true,
+                }),
             }),
             category_module_1.CategoriesModule,
             menu_items_module_1.MenuItemsModule,
