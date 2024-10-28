@@ -10,7 +10,7 @@ export class UserController {
   constructor(private userService: UserService) {}
 
   @Post('create')
-  // @Roles('admin') // Only admin can access this endpoint
+  //@Roles('admin') // Only admin can access this endpoint
   async create(
     @Body() body: { username: string; password: string; role: string }
   ) {

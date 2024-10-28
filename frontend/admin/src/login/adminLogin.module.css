@@ -1,0 +1,134 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Bhaina+2:wght@400;700&display=swap');
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  font-family: 'Baloo Bhaina 2', sans-serif;
+  background-color: #f5f5f5;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+.logoImage {
+  height: 50px;
+  width: auto;
+}
+
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: white;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  width: 400px;
+  text-align: center;
+}
+
+.heading {
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 72.43px;
+  color: #505980;
+  margin-bottom: 20px;
+}
+
+.form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  font-size: 18px;
+  color: #505980;
+  margin-bottom: 8px;
+  text-align: left;
+}
+
+.input {
+  padding: 10px;
+  font-size: 16px;
+  margin-bottom: 16px;
+  border: 1px solid #54a3aa;
+  border-radius: 4px;
+}
+
+.submitButton {
+  padding: 12px;
+  font-size: 18px;
+  font-weight: 700;
+  font-family: 'Baloo Bhaina 2', sans-serif;
+  background-color: #54a3aa;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.submitButton:hover {
+  background-color: #409a9a;
+}
+
+.orSeparator {
+  margin: 20px 0;
+  font-size: 16px;
+  color: #505980;
+}
+
+.socialButtons {
+  display: flex;
+  flex-direction: column;
+}
+
+.socialButton {
+  padding: 10px;
+  font-size: 16px;
+  font-weight: 700;
+  font-family: 'Baloo Bhaina 2', sans-serif;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.socialButton:nth-child(1) {
+  background-color: #3b5998;
+}
+.socialButton:nth-child(2) {
+  background-color: #db4437;
+}
+.socialButton:nth-child(3) {
+  background-color: #0077b5;
+}
+.socialButton:hover {
+  opacity: 0.8;
+}
+@media (max-width: 600px) {
+  .container {
+    padding: 10px;
+  }
+
+  .heading {
+    font-size: 1.25em;
+  }
+
+  .input,
+  .submitButton,
+  .socialButton {
+    font-size: 0.9em;
+  }
+}

@@ -39,7 +39,7 @@ let UserController = class UserController {
 };
 __decorate([
     (0, common_1.Post)('create')
-    // @Roles('admin') // Only admin can access this endpoint
+    //@Roles('admin') // Only admin can access this endpoint
     ,
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
