@@ -1,0 +1,41 @@
+.sideMenu {
+  display: flex;
+  flex-direction: column;
+  width: 250px;
+  background: #ffffff;
+  padding: 10px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.sideMenu img {
+  width: 200px;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+.sideMenu ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sideMenu li {
+  margin-bottom: 15px;
+}
+
+.sideMenu a {
+  margin-top: 40px;
+  text-decoration: none;
+  color: #8b8894;
+  font-family: 'Baloo Bhaina 2', sans-serif;
+  font-size: 24px;
+  font-weight: normal;
+  line-height: 1.5;
+  display: block;
+
+  padding: 5px;
+}
+
+.sideMenu a:hover {
+  font-weight: bold;
+}

@@ -29,6 +29,7 @@ import { UserModule } from './user/user.module';
         password: 'ghof123',
         database: 'menu_order_app',
         entities: [MenuItem, Category, Order, OrderItem, User],
+        migrations: [__dirname + '/src/migrations/*{.ts,.js}'],
         synchronize: false,
         logging: true,
       }),

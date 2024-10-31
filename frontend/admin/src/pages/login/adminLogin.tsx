@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import styles from './adminLogin.module.css';
-import { loginUser } from '../api/authService';
+import { useNavigate } from 'react-router-dom';
+import { loginUser } from '../../api/authService';
 
 const AdminLogin: React.FC = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
+
+  const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -15,6 +18,7 @@ const AdminLogin: React.FC = () => {
       localStorage.setItem('access_token', data.access_token);
       console.log('Login successful', data);
       setError(null);
+      navigate('/dashboard');
     } catch (err) {
       const errorMessage =
         typeof err === 'object' && err !== null && 'message' in err
@@ -70,13 +74,7 @@ const AdminLogin: React.FC = () => {
           </button>
           <div className={styles.orSeparator}>or</div>
           <div className={styles.socialButtons}>
-            <button className={styles.socialButton}>
-              Sign in with Facebook
-            </button>
             <button className={styles.socialButton}>Sign in with Google</button>
-            <button className={styles.socialButton}>
-              Sign in with LinkedIn
-            </button>
           </div>
         </form>
       </div>

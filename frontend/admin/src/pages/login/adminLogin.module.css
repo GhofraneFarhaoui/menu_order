@@ -108,12 +108,7 @@
 .socialButton:nth-child(1) {
   background-color: #3b5998;
 }
-.socialButton:nth-child(2) {
-  background-color: #db4437;
-}
-.socialButton:nth-child(3) {
-  background-color: #0077b5;
-}
+
 .socialButton:hover {
   opacity: 0.8;
 }
