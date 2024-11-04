@@ -5,6 +5,7 @@ import DailyRevenue from '../../components/DailyRevenue/DailyRevenu';
 import UpcomingOrders from '../../components/UpcomingOrders/UpcomingOrders';
 import PopularItems from '../../components/PopularItems/PopularItems';
 import styles from './dashboard.module.css';
+import OrdersPerDay from '../../components/OrdersPerDay/OrdersPerDay';
 
 const Dashboard: React.FC = () => {
   return (
@@ -15,6 +16,7 @@ const Dashboard: React.FC = () => {
         <div className={styles.topRow}>
           <OrdersCount />
           <DailyRevenue />
+          <OrdersPerDay />
         </div>
         <div className={styles.middleRow}>
           <UpcomingOrders />
