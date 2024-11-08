@@ -11,4 +11,7 @@ export declare class OrderService {
     getOrderById(id: number): Promise<Order>;
     updateOrder(id: number, updateData: Partial<Order>): Promise<Order>;
     deleteOrder(id: number): Promise<void>;
+    getTotalOrdersPerDay(date: string): Promise<number>;
+    getDailyRevenue(date: Date): Promise<number>;
+    getAverageOrderAmountPerDay(date: Date): Promise<number>;
 }

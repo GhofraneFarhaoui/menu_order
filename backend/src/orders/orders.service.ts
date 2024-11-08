@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Between, Repository } from 'typeorm';
 import { Order } from './entities/order.entity';
 import { OrderItem } from './entities/order-item.entity';
 import { CreateOrderDto } from './create-order.dto';
@@ -60,5 +60,42 @@ export class OrderService {
 
   async deleteOrder(id: number): Promise<void> {
     await this.orderRepository.delete(id);
+  }
+
+  //total orders
+
+  async getTotalOrdersPerDay(date: string): Promise<number> {
+    const result = await this.orderRepository
+      .createQueryBuilder('order')
+      .select('COUNT(*)', 'count')
+      .where('DATE(order.created_at) = :date', { date })
+      .getRawOne();
+
+    return result ? parseInt(result.count, 10) || 0 : 0;
+  }
+  // total revenue
+
+  async getDailyRevenue(date: Date): Promise<number> {
+    const startDate = new Date(date);
+    startDate.setHours(0, 0, 0, 0);
+    const endDate = new Date(date);
+    endDate.setHours(23, 59, 59, 999);
+
+    const orders = await this.orderRepository.find({
+      where: {
+        created_at: Between(startDate, endDate),
+      },
+    });
+
+    return orders.reduce((sum, order) => sum + Number(order.totalPrice), 0);
+  }
+  //average amount
+
+  async getAverageOrderAmountPerDay(date: Date): Promise<number> {
+    const dateString = date.toISOString().split('T')[0];
+    const totalOrders = await this.getTotalOrdersPerDay(dateString);
+    const dailyRevenue = await this.getDailyRevenue(date);
+
+    return totalOrders > 0 ? dailyRevenue / totalOrders : 0;
   }
 }

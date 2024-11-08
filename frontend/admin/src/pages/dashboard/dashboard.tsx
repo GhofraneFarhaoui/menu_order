@@ -17,6 +17,9 @@ const Dashboard: React.FC = () => {
           <OrdersCount />
           <DailyRevenue />
           <OrdersPerDay />
+          {/* <Card icon= , title ='I?DI' price ='INSIGHT.dailyrevenu'    */}
+          {/* <Card icon= , title ='' price =''    */}
+          {/* <Card icon= , title ='' price =''    */}
         </div>
         <div className={styles.middleRow}>
           <UpcomingOrders />

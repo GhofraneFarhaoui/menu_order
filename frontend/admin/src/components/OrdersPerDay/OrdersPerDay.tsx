@@ -2,23 +2,36 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import styles from './OrdersPerDay.module.css';
 
-const OrdersPerDay: React.FC = () => {
-  const [revenue, setRevenue] = useState(0);
+const AverageOrderAmount: React.FC = () => {
+  const [averageOrderAmount, setAverageOrderAmount] = useState<number>(0);
 
   useEffect(() => {
-    const fetchRevenue = async () => {
-      const response = await axios.get('');
-      setRevenue(response.data.revenue);
+    const fetchAverageOrderAmount = async () => {
+      try {
+        const today = new Date();
+        const formattedDate = `${today.getFullYear()}-${String(
+          today.getMonth() + 1
+        ).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
+        const response = await axios.get(
+          `http://localhost:3000/order/average-order-amount?date=${formattedDate}`
+        );
+
+        const formattedAmount = response.data.averageOrderAmount.toFixed(2);
+        setAverageOrderAmount(formattedAmount);
+      } catch (error) {
+        console.error('Error fetching average order amount:', error);
+      }
     };
-    fetchRevenue();
+
+    fetchAverageOrderAmount();
   }, []);
 
   return (
     <div className={styles.box}>
       <div className={styles.content}>
         <div className={styles.content}>
-          <p className={styles.number}>{revenue}</p>
-          <p className={styles.commandes}>recettes journaliers</p>
+          <p className={styles.number}>{averageOrderAmount}</p>
+          <p className={styles.commandes}></p>
         </div>
       </div>
       <div className={styles.icon}>
@@ -40,4 +53,4 @@ const OrdersPerDay: React.FC = () => {
   );
 };
 
-export default OrdersPerDay;
+export default AverageOrderAmount;

@@ -23,6 +23,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.OrderController = void 0;
 const common_1 = require("@nestjs/common");
+const parse_date_pipe_1 = require("./parse-date.pipe");
 const orders_service_1 = require("./orders.service");
 const create_order_dto_1 = require("./create-order.dto");
 let OrderController = class OrderController {
@@ -37,6 +38,25 @@ let OrderController = class OrderController {
     getAllOrders() {
         return __awaiter(this, void 0, void 0, function* () {
             return this.orderService.getAllOrders();
+        });
+    }
+    // total orders per day
+    getTotalOrdersPerDay(date) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return this.orderService.getTotalOrdersPerDay(date);
+        });
+    }
+    // daily revenue
+    getDailyRevenue(date) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return this.orderService.getDailyRevenue(date);
+        });
+    }
+    // average amount
+    getAverageOrderAmount(date) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const averageAmount = yield this.orderService.getAverageOrderAmountPerDay(date);
+            return { averageOrderAmount: averageAmount };
         });
     }
     getOrderById(id) {
@@ -68,6 +88,27 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], OrderController.prototype, "getAllOrders", null);
+__decorate([
+    (0, common_1.Get)('total-orders'),
+    __param(0, (0, common_1.Query)('date')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], OrderController.prototype, "getTotalOrdersPerDay", null);
+__decorate([
+    (0, common_1.Get)('daily-revenue'),
+    __param(0, (0, common_1.Query)('date', parse_date_pipe_1.ParseDatePipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Date]),
+    __metadata("design:returntype", Promise)
+], OrderController.prototype, "getDailyRevenue", null);
+__decorate([
+    (0, common_1.Get)('average-order-amount'),
+    __param(0, (0, common_1.Query)('date', parse_date_pipe_1.ParseDatePipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Date]),
+    __metadata("design:returntype", Promise)
+], OrderController.prototype, "getAverageOrderAmount", null);
 __decorate([
     (0, common_1.Get)(':id'),
     __param(0, (0, common_1.Param)('id')),

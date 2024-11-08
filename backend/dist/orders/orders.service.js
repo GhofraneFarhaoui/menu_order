@@ -79,6 +79,41 @@ let OrderService = class OrderService {
             yield this.orderRepository.delete(id);
         });
     }
+    //total orders
+    getTotalOrdersPerDay(date) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const result = yield this.orderRepository
+                .createQueryBuilder('order')
+                .select('COUNT(*)', 'count')
+                .where('DATE(order.created_at) = :date', { date })
+                .getRawOne();
+            return result ? parseInt(result.count, 10) || 0 : 0;
+        });
+    }
+    // total revenue
+    getDailyRevenue(date) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const startDate = new Date(date);
+            startDate.setHours(0, 0, 0, 0);
+            const endDate = new Date(date);
+            endDate.setHours(23, 59, 59, 999);
+            const orders = yield this.orderRepository.find({
+                where: {
+                    created_at: (0, typeorm_2.Between)(startDate, endDate),
+                },
+            });
+            return orders.reduce((sum, order) => sum + Number(order.totalPrice), 0);
+        });
+    }
+    //average amount
+    getAverageOrderAmountPerDay(date) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const dateString = date.toISOString().split('T')[0];
+            const totalOrders = yield this.getTotalOrdersPerDay(dateString);
+            const dailyRevenue = yield this.getDailyRevenue(date);
+            return totalOrders > 0 ? dailyRevenue / totalOrders : 0;
+        });
+    }
 };
 OrderService = __decorate([
     (0, common_1.Injectable)(),
