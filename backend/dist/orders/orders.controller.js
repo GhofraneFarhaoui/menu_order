@@ -59,6 +59,12 @@ let OrderController = class OrderController {
             return { averageOrderAmount: averageAmount };
         });
     }
+    // popular items
+    getMostPopularOrders() {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.orderService.getMostPopularItemsLastWeek();
+        });
+    }
     getOrderById(id) {
         return __awaiter(this, void 0, void 0, function* () {
             return this.orderService.getOrderById(id);
@@ -109,6 +115,12 @@ __decorate([
     __metadata("design:paramtypes", [Date]),
     __metadata("design:returntype", Promise)
 ], OrderController.prototype, "getAverageOrderAmount", null);
+__decorate([
+    (0, common_1.Get)('most-popular-orders'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], OrderController.prototype, "getMostPopularOrders", null);
 __decorate([
     (0, common_1.Get)(':id'),
     __param(0, (0, common_1.Param)('id')),

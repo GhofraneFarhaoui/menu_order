@@ -10,6 +10,8 @@ type Category = {
   image_url: string;
 };
 
+const STATIC_BASE_URL = 'http://localhost:3000/static/';
+
 const HomePage: React.FC = () => {
   const [categories, setCategories] = useState<Category[]>([]);
   const [loading, setLoading] = useState(true);
@@ -19,7 +21,11 @@ const HomePage: React.FC = () => {
     const fetchCategories = async () => {
       try {
         const response = await axios.get('http://localhost:3000/categories');
-        setCategories(response.data);
+        const updatedCategories = response.data.map((category: Category) => ({
+          ...category,
+          image_url: `${STATIC_BASE_URL}${category.image_url}`,
+        }));
+        setCategories(updatedCategories);
       } catch (err) {
         setError('Failed to load categories. Please try again later.');
       } finally {

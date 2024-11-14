@@ -114,6 +114,25 @@ let OrderService = class OrderService {
             return totalOrders > 0 ? dailyRevenue / totalOrders : 0;
         });
     }
+    //popular items
+    getMostPopularItemsLastWeek() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const lastWeek = new Date();
+            lastWeek.setDate(lastWeek.getDate() - 7);
+            const result = yield this.orderItemRepository
+                .createQueryBuilder('orderItem')
+                .innerJoin('orderItem.order', 'order')
+                .innerJoin('orderItem.menuItem', 'menuItem')
+                .select('menuItem.name', 'name')
+                .addSelect('menuItem.image_url', 'imageUrl')
+                .addSelect('SUM(orderItem.quantity)', 'totalOrdered')
+                .where('order.created_at > :lastWeek', { lastWeek })
+                .groupBy('menuItem.id')
+                .orderBy('SUM(orderItem.quantity)', 'DESC')
+                .getRawMany();
+            return result;
+        });
+    }
 };
 OrderService = __decorate([
     (0, common_1.Injectable)(),

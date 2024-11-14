@@ -15,6 +15,6 @@
     "declaration": true,
     "strictPropertyInitialization": false
   },
-  "include": ["src/**/*.ts"],
+  "include": ["src/**/*.ts", "app.module.ts", "database.config.ts", "main.ts"],
   "exclude": ["node_modules"]
 }

@@ -15,11 +15,17 @@ const orders_module_1 = require("./orders/orders.module");
 const database_config_1 = require("./database.config");
 const auth_module_1 = require("./auth/auth.module");
 const user_module_1 = require("./user/user.module");
+const serve_static_1 = require("@nestjs/serve-static");
+const path_1 = require("path");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
+            serve_static_1.ServeStaticModule.forRoot({
+                rootPath: (0, path_1.join)(__dirname, '..', 'static'),
+                serveRoot: '/static',
+            }),
             typeorm_1.TypeOrmModule.forRoot(database_config_1.databaseConfig),
             category_module_1.CategoriesModule,
             menu_items_module_1.MenuItemsModule,

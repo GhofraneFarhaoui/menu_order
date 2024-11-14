@@ -98,4 +98,23 @@ export class OrderService {
 
     return totalOrders > 0 ? dailyRevenue / totalOrders : 0;
   }
+  //popular items
+  async getMostPopularItemsLastWeek(): Promise<any> {
+    const lastWeek = new Date();
+    lastWeek.setDate(lastWeek.getDate() - 7);
+
+    const result = await this.orderItemRepository
+      .createQueryBuilder('orderItem')
+      .innerJoin('orderItem.order', 'order')
+      .innerJoin('orderItem.menuItem', 'menuItem')
+      .select('menuItem.name', 'name')
+      .addSelect('menuItem.image_url', 'imageUrl')
+      .addSelect('SUM(orderItem.quantity)', 'totalOrdered')
+      .where('order.created_at > :lastWeek', { lastWeek })
+      .groupBy('menuItem.id')
+      .orderBy('SUM(orderItem.quantity)', 'DESC')
+      .getRawMany();
+
+    return result;
+  }
 }

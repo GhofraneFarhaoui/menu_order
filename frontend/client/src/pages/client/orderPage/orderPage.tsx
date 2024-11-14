@@ -29,8 +29,10 @@ const OrderPage: React.FC = () => {
             const item = allItems.find(
               (item: CartItem) => item.id === parseInt(id)
             );
+
             return {
               ...item,
+              image_url: `http://localhost:3000/static/${item.image_url}`,
               quantity: savedCart[id],
             };
           });

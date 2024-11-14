@@ -4,7 +4,6 @@ import axios from 'axios';
 import styles from './categoryItems.module.css';
 import Header from '../../../components/header';
 import { FaAngleDown, FaAngleUp, FaTrash } from 'react-icons/fa';
-
 import { useNavigate } from 'react-router-dom';
 
 interface Item {
@@ -24,6 +23,8 @@ const CategoryItemsPage: React.FC = () => {
     return savedCart ? JSON.parse(savedCart) : {};
   });
 
+  const STATIC_BASE_URL = 'http://localhost:3000/static/';
+
   useEffect(() => {
     const fetchItems = async () => {
       try {
@@ -31,7 +32,12 @@ const CategoryItemsPage: React.FC = () => {
           `http://localhost:3000/categories/${categoryId}`
         );
         if (response.data && response.data.menuItems) {
-          setItems(response.data.menuItems);
+          const updatedItems = response.data.menuItems.map((item: Item) => ({
+            ...item,
+
+            image_url: `${STATIC_BASE_URL}${item.image_url}`,
+          }));
+          setItems(updatedItems);
         }
       } catch (error) {
         console.error('Error fetching items:', error);
@@ -44,7 +50,7 @@ const CategoryItemsPage: React.FC = () => {
   }, [categoryId]);
 
   useEffect(() => {
-    // Save the cart to sessionStorage kol win tetbadel
+    // Save the cart to sessionStorage whenever it changes
     sessionStorage.setItem('cart', JSON.stringify(cart));
   }, [cart]);
 
@@ -68,7 +74,7 @@ const CategoryItemsPage: React.FC = () => {
       ...storedCart,
       [id]: Math.max((storedCart[id] || 0) - 1, 0),
     };
-    if (updatedCart[id] === 0) delete updatedCart[id]; // Remove item if qte is 0
+    if (updatedCart[id] === 0) delete updatedCart[id]; // Remove item if quantity is 0
     sessionStorage.setItem('cart', JSON.stringify(updatedCart));
     setCart(updatedCart);
   };
@@ -146,9 +152,9 @@ const CategoryItemsPage: React.FC = () => {
                           <path
                             d="M12 24L1 12.5L12 1"
                             stroke="white"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
                           />
                         </svg>
                       </button>
@@ -169,9 +175,9 @@ const CategoryItemsPage: React.FC = () => {
                           <path
                             d="M1 1L12 12.5L1 24"
                             stroke="white"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
                           />
                         </svg>
                       </button>

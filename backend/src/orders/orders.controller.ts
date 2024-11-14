@@ -51,6 +51,12 @@ export class OrderController {
     return { averageOrderAmount: averageAmount };
   }
 
+  // popular items
+  @Get('most-popular-orders')
+  async getMostPopularOrders() {
+    return await this.orderService.getMostPopularItemsLastWeek();
+  }
+
   @Get(':id')
   async getOrderById(@Param('id') id: number): Promise<Order> {
     return this.orderService.getOrderById(id);

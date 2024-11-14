@@ -14,4 +14,5 @@ export declare class OrderService {
     getTotalOrdersPerDay(date: string): Promise<number>;
     getDailyRevenue(date: Date): Promise<number>;
     getAverageOrderAmountPerDay(date: Date): Promise<number>;
+    getMostPopularItemsLastWeek(): Promise<any>;
 }

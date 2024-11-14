@@ -74,7 +74,7 @@ const UpcomingOrders: React.FC = () => {
 
   return (
     <div className={styles.box}>
-      <h3>Commandes à Venir (Aujourd'hui)</h3>
+      <h3>Commandes à servir</h3>
       <ul className={styles.orderList}>
         {todayOrders.length > 0 ? (
           todayOrders.map((order) => (

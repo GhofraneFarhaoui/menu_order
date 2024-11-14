@@ -35,6 +35,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const core_1 = require("@nestjs/core");
 const app_module_1 = require("./app.module");
 const dotenv = __importStar(require("dotenv"));
+const path_1 = require("path");
+const express = __importStar(require("express"));
 function bootstrap() {
     return __awaiter(this, void 0, void 0, function* () {
         dotenv.config();
@@ -43,6 +45,7 @@ function bootstrap() {
             origin: 'http://localhost:3001',
             methods: 'GET,POST,PUT,DELETE,OPTIONS',
         });
+        app.use('/static', express.static((0, path_1.join)(__dirname, '..', 'static')));
         yield app.listen(3000);
     });
 }

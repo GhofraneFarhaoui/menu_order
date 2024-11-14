@@ -11,6 +11,7 @@ export declare class OrderController {
     getAverageOrderAmount(date: Date): Promise<{
         averageOrderAmount: number;
     }>;
+    getMostPopularOrders(): Promise<any>;
     getOrderById(id: number): Promise<Order>;
     updateOrder(id: number, updateData: Partial<Order>): Promise<Order>;
     deleteOrder(id: number): Promise<void>;
