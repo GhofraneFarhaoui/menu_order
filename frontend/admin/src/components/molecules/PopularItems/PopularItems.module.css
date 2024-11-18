@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Bhaina+2:wght@400;700&display=swap');
+.box {
+  font-family: 'Baloo Bhaina 2', sans-serif;
+  width: 466px;
+  height: 310px;
+  background: #ffffff;
+  padding: 20px;
+  margin: 15px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  text-align: left;
+  color: #8b8894;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  gap: 10px;
+  position: relative;
+}
+
+.itemImage {
+  width: 79px;
+  height: 53px;
+  border-radius: 10px;
+  opacity: 3;
+}
+
+.nameBox {
+  display: none;
+}
+
+.itemName {
+  font-family: 'Baloo Bhaina 2', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 28.17px;
+  text-align: left;
+  margin: 0;
+  color: #8b8894;
+}
+
+.category {
+  font-family: 'Baloo Bhaina 2', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 28.17px;
+  text-align: left;
+  color: #d2d0da;
+}
+
+.orderCount {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-family: 'Baloo Bhaina 2', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 28.17px;
+  color: #2b99da;
+}
+
+.bold {
+  font-weight: 600;
+  font-size: 24px;
+}

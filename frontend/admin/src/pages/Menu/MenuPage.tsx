@@ -1,9 +1,9 @@
 import React from 'react';
-import SideMenu from '../../components/SideMenu/SideMenu';
-import OrdersCount from '../../components/OrdersCount/OrdersCount';
-import DailyRevenue from '../../components/DailyRevenue/DailyRevenu';
-import UpcomingOrders from '../../components/UpcomingOrders/UpcomingOrders';
-import PopularItems from '../../components/PopularItems/PopularItems';
+import SideMenu from '../../components/molecules/SideMenu/SideMenu';
+import OrdersCount from '../../components/molecules/OrdersCount/OrdersCount';
+import DailyRevenue from '../../components/molecules/DailyRevenue/DailyRevenu';
+import UpcomingOrders from '../../components/molecules/UpcomingOrders/UpcomingOrders';
+import PopularItems from '../../components/molecules/PopularItems/PopularItems';
 import styles from './MenuPage.module.css';
 
 const Menu: React.FC = () => {
