@@ -1,28 +1,32 @@
-import React from 'react';
-import SideMenu from '../../components/molecules/SideMenu/SideMenu';
-import OrdersCount from '../../components/molecules/OrdersCount/OrdersCount';
-import DailyRevenue from '../../components/molecules/DailyRevenue/DailyRevenu';
-import UpcomingOrders from '../../components/molecules/UpcomingOrders/UpcomingOrders';
-import PopularItems from '../../components/molecules/PopularItems/PopularItems';
+import React, { useState } from 'react';
+import MenuItemBox from '../../components/molecules/MenuItemBox/MenuItemBox';
+import ItemDetails from '../../components/molecules/MenuItemDetails/MenuItemDetails';
+import Layout from '../../components/template/Layout';
 import styles from './MenuPage.module.css';
 
-const Menu: React.FC = () => {
-  return (
-    <div className={styles.dashboard}>
-      <SideMenu />
+const MenuPage: React.FC = () => {
+  const [selectedItem, setSelectedItem] = useState<any>(null);
 
-      <div className={styles.mainContent}>
-        <div className={styles.topRow}>
-          <OrdersCount />
-          <DailyRevenue />
+  const handleItemClick = (item: any) => {
+    setSelectedItem(item);
+  };
+
+  const handleCloseDetails = () => {
+    setSelectedItem(null);
+  };
+
+  return (
+    <Layout>
+      <div className={styles.container}>
+        <div className={styles.itemBoxWrapper}>
+          <MenuItemBox onItemSelect={handleItemClick} />
         </div>
-        <div className={styles.middleRow}>
-          <UpcomingOrders />
-          <PopularItems />
+        <div className={styles.itemDetailsWrapper}>
+          <ItemDetails item={selectedItem} onClose={handleCloseDetails} />
         </div>
       </div>
-    </div>
+    </Layout>
   );
 };
 
-export default Menu;
+export default MenuPage;

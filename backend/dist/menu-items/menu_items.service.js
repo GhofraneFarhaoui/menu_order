@@ -43,6 +43,12 @@ let MenuItemsService = class MenuItemsService {
             });
         });
     }
+    create(createMenuItemDto) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const menuItem = this.menuItemsRepository.create(createMenuItemDto);
+            return this.menuItemsRepository.save(menuItem);
+        });
+    }
 };
 MenuItemsService = __decorate([
     (0, common_1.Injectable)(),

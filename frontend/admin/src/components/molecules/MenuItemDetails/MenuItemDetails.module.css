@@ -1,0 +1,104 @@
+.detailsBox {
+  width: 345px;
+  height: 644px;
+  background: #ffffff;
+  border-radius: 8px;
+  position: relative;
+}
+
+.closeButton {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  color: #d9534f;
+}
+
+.detailsImage {
+  width: 100%;
+  height: 242px;
+  border-radius: 11px 11px 0px 0px;
+  opacity: 0px;
+
+  object-fit: cover;
+}
+.detailsContent {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.detailsTitlePrice {
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  color: #8b8894;
+}
+
+.detailsTitlePrice h2 {
+  font-family: 'Baloo Bhaina 2', sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 40.24px;
+  margin: 0;
+  text-align: left;
+  color: #8b8894;
+}
+
+.detailsTitlePrice .price {
+  font-family: 'Baloo Bhaina 2', sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 40.24px;
+  color: #8b8894;
+  text-align: right;
+}
+
+.detailsContent p {
+  padding: 10px;
+  font-family: 'Baloo Bhaina 2', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 28.17px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  margin-top: 5px;
+}
+
+.detailsTitlePrice h2,
+.detailsTitlePrice .price,
+p {
+  margin: 0;
+  color: #8b8894;
+}
+
+.buttonContainer {
+  z-index: 10; /* Ensure it appears above other elements */
+  position: absolute; /* Positions the container relative to .detailsBox */
+  top: 10px; /* Adjust distance from top edge */
+  right: 10px; /* Adjust distance from right edge */
+  display: flex; /* Arrange buttons in a row */
+  gap: 10px; /* Space between buttons */
+}
+
+.publishButton,
+.addButton {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.publishButton:hover,
+.addButton:hover {
+  background-color: #0056b3;
+}

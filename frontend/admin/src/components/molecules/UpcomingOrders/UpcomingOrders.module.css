@@ -7,7 +7,6 @@
   padding: 20px;
   margin: 15px;
   border-radius: 8px;
-
   overflow: hidden;
 }
 
@@ -25,8 +24,10 @@ h3 {
   list-style-type: none;
   padding: 0;
   margin-top: 12px;
+  flex-grow: 1;
   max-height: 300px;
   overflow-y: auto;
+  max-height: calc(100% - 50px);
   scrollbar-width: thin;
   scrollbar-color: rgba(0, 0, 0, 0.1) transparent;
 }
@@ -146,8 +147,9 @@ h3 {
 .closeButton {
   margin-top: 15px;
   padding: 5px 10px;
-  background-color: #333;
+  background-color: #2b99da;
   color: white;
+
   border: none;
   border-radius: 5px;
   cursor: pointer;
