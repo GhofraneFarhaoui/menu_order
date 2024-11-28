@@ -12,7 +12,7 @@ export class MenuItemsService {
   ) {}
 
   async findAll(): Promise<MenuItem[]> {
-    return this.menuItemsRepository.find();
+    return this.menuItemsRepository.find({ relations: ['category'] });
   }
 
   async findByCategory(categoryId: number): Promise<MenuItem[]> {

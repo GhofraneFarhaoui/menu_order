@@ -28,6 +28,7 @@ const MenuItemBox: React.FC<MenuItemBoxProps> = ({ onItemSelect }) => {
     const fetchMenuItems = async () => {
       try {
         const response = await axios.get('http://localhost:3000/menu_items');
+        console.log(response.data);
         setMenuItems(response.data);
       } catch (error) {
         console.error('Failed to fetch menu items:', error);
@@ -90,7 +91,7 @@ const MenuItemBox: React.FC<MenuItemBoxProps> = ({ onItemSelect }) => {
               />
             </div>
             <div>{item.name}</div>
-            <div>{item.category?.name || 'No Category'}</div>
+            <div>{item.category?.name}</div>
             <div>{item.price} D</div>
             <div
               className={`${styles.availability} ${

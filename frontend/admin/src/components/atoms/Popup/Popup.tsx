@@ -1,4 +1,5 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
+import axios from 'axios';
 import styles from './Popup.module.css';
 
 interface PopupProps {
@@ -14,15 +15,37 @@ interface PopupProps {
 }
 
 const Popup: React.FC<PopupProps> = ({ isOpen, onClose, onAddMenuItem }) => {
-  const [newItem, setNewItem] = useState({
+  const initialState = {
     name: '',
     description: '',
-    price: 0,
+    price: '',
     image_url: '',
     categoryId: 0,
-  });
+  };
+
+  const [newItem, setNewItem] = useState(initialState);
+  const [categories, setCategories] = useState<{ id: number; name: string }[]>(
+    []
+  );
+  const [loading, setLoading] = useState(false);
 
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      setLoading(true);
+      try {
+        const response = await axios.get('http://localhost:3000/categories');
+        setCategories(response.data);
+      } catch (error) {
+        console.error('Failed to fetch categories:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (isOpen) fetchCategories();
+  }, [isOpen]);
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -34,24 +57,48 @@ const Popup: React.FC<PopupProps> = ({ isOpen, onClose, onAddMenuItem }) => {
     }
   };
 
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
+  ) => {
+    const { name, value } = e.target;
+    setNewItem((prevItem) => ({
+      ...prevItem,
+      [name]: name === 'price' || name === 'categoryId' ? value : value,
+    }));
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (newItem.name && newItem.price && newItem.categoryId) {
-      onAddMenuItem(newItem);
+    const { name, price, description, categoryId, image_url } = newItem;
+
+    if (name && price && categoryId) {
+      const formattedItem = {
+        name,
+        description,
+        price: parseFloat(price),
+        image_url,
+        categoryId: Number(categoryId),
+      };
+      onAddMenuItem(formattedItem);
+      resetForm();
       onClose();
     } else {
       alert('Please fill in all required fields.');
     }
   };
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value } = e.target;
-    setNewItem((prevItem) => ({
-      ...prevItem,
-      [name]: name === 'price' || name === 'categoryId' ? Number(value) : value,
-    }));
+  const handleCancel = () => {
+    resetForm();
+    onClose();
+  };
+
+  const resetForm = () => {
+    setNewItem(initialState);
+    if (fileInputRef.current) {
+      fileInputRef.current.value = '';
+    }
   };
 
   const handleImageUploadClick = () => {
@@ -63,6 +110,7 @@ const Popup: React.FC<PopupProps> = ({ isOpen, onClose, onAddMenuItem }) => {
   return (
     <div className={`${styles.popup} ${isOpen ? styles.show : ''}`}>
       <div className={styles.popupContent}>
+        <h2 className={styles.title}>Ajouter un plat</h2>
         <div className={styles.imageUpload}>
           <div onClick={handleImageUploadClick}>
             {newItem.image_url ? (
@@ -87,7 +135,7 @@ const Popup: React.FC<PopupProps> = ({ isOpen, onClose, onAddMenuItem }) => {
                   rx="9.5"
                   fill="white"
                   stroke="#D9D9D9"
-                  stroke-dasharray="2 2"
+                  strokeDasharray="2 2"
                 />
               </svg>
             )}
@@ -112,22 +160,36 @@ const Popup: React.FC<PopupProps> = ({ isOpen, onClose, onAddMenuItem }) => {
             />
           </div>
           <div className={styles.formGroup}>
-            <label>Catégorie ID</label>
-            <input
-              type="number"
-              name="categoryId"
-              value={newItem.categoryId}
-              onChange={handleChange}
-              required
-            />
+            <label>Catégorie</label>
+            <div className={styles.dropdownWrapper}>
+              <select
+                name="categoryId"
+                value={newItem.categoryId || ''}
+                onChange={handleChange}
+                required
+                className={styles.selectInput}
+              >
+                <option value="" disabled>
+                  Sélectionnez une catégorie
+                </option>
+                {categories.map((category) => (
+                  <option key={category.id} value={category.id}>
+                    {category.name}
+                  </option>
+                ))}
+              </select>
+              <span className={styles.arrowDown}></span>
+            </div>
           </div>
+
           <div className={styles.formGroup}>
             <label>Prix</label>
             <input
-              type="number"
+              type="text"
               name="price"
               value={newItem.price}
               onChange={handleChange}
+              placeholder="Entrez le prix"
               required
             />
           </div>
@@ -141,8 +203,14 @@ const Popup: React.FC<PopupProps> = ({ isOpen, onClose, onAddMenuItem }) => {
             />
           </div>
 
-          <button type="submit">Ajouter</button>
-          <button type="button" onClick={onClose}>
+          <button className={styles.poupbutton} type="submit">
+            Ajouter
+          </button>
+          <button
+            className={styles.poupbutton}
+            type="button"
+            onClick={handleCancel}
+          >
             Annuler
           </button>
         </form>

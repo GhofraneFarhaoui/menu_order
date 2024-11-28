@@ -32,7 +32,7 @@ let MenuItemsService = class MenuItemsService {
     }
     findAll() {
         return __awaiter(this, void 0, void 0, function* () {
-            return this.menuItemsRepository.find();
+            return this.menuItemsRepository.find({ relations: ['category'] });
         });
     }
     findByCategory(categoryId) {

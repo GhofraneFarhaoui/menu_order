@@ -15,6 +15,7 @@
   padding: 15px;
   gap: 0;
   box-sizing: border-box;
+  line-height: 47px;
 }
 
 .popup.show {
@@ -30,7 +31,7 @@
   padding: 0;
 }
 
-.popupTitle {
+.title {
   font-size: 22px;
   font-weight: 700;
   color: #333;
@@ -62,6 +63,27 @@
 
 .svgWrapper:hover {
   background-color: #f0f0f0;
+}
+.imageUpload {
+  position: relative;
+  width: 454px;
+  height: 195px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  border-radius: 9.5px;
+}
+
+.imagePreview {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 9.5px;
+}
+
+.hiddenInput {
+  display: none;
 }
 
 .uploadIcon {
@@ -106,7 +128,57 @@ textarea {
   border-radius: 5px;
 }
 
-button {
+.dropdownWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.selectInput {
+  width: 100%;
+  padding: 8px 32px 8px 12px; /* Extra right padding for arrow */
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  background-color: #fff;
+  appearance: none;
+  color: #333;
+}
+
+.selectInput:focus {
+  outline: none;
+}
+
+.selectInput option {
+  padding: 8px;
+  font-size: 14px;
+  color: #333;
+}
+
+.arrowDown {
+  position: absolute;
+  right: 10px;
+  pointer-events: none;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 6px solid #333;
+}
+
+.selectInput:disabled {
+  background-color: #f5f5f5;
+  color: #999;
+}
+
+.selectInput:disabled {
+  background-color: #f5f5f5;
+  color: #999;
+}
+
+.poupbutton {
   padding: 10px 16px;
   font-size: 14px;
   font-weight: 500;
@@ -115,7 +187,6 @@ button {
   border: none;
   transition: background-color 0.3s ease;
 }
-
 button[type='submit'] {
   background-color: #2b99da;
   color: #fff;
