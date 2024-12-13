@@ -27,8 +27,8 @@ let RolesGuard = class RolesGuard {
         return roles.includes(user.role); // nshuf if the user has the required role
     }
 };
-RolesGuard = __decorate([
+exports.RolesGuard = RolesGuard;
+exports.RolesGuard = RolesGuard = __decorate([
     (0, common_1.Injectable)(),
     __metadata("design:paramtypes", [core_1.Reflector])
 ], RolesGuard);
-exports.RolesGuard = RolesGuard;

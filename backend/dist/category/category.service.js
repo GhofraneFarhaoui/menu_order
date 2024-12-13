@@ -50,9 +50,9 @@ let CategoryService = class CategoryService {
         });
     }
 };
-CategoryService = __decorate([
+exports.CategoryService = CategoryService;
+exports.CategoryService = CategoryService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, typeorm_1.InjectRepository)(category_entity_1.Category)),
     __metadata("design:paramtypes", [typeorm_2.Repository])
 ], CategoryService);
-exports.CategoryService = CategoryService;

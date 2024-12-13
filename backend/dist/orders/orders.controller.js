@@ -81,6 +81,7 @@ let OrderController = class OrderController {
         });
     }
 };
+exports.OrderController = OrderController;
 __decorate([
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)()),
@@ -143,8 +144,7 @@ __decorate([
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
 ], OrderController.prototype, "deleteOrder", null);
-OrderController = __decorate([
+exports.OrderController = OrderController = __decorate([
     (0, common_1.Controller)('order'),
     __metadata("design:paramtypes", [orders_service_1.OrderService])
 ], OrderController);
-exports.OrderController = OrderController;

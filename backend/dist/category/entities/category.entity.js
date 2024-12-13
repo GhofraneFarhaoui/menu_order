@@ -14,6 +14,7 @@ const typeorm_1 = require("typeorm");
 const menu_items_entity_1 = require("../../menu-items/entities/menu_items.entity");
 let Category = class Category {
 };
+exports.Category = Category;
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)(),
     __metadata("design:type", Number)
@@ -30,7 +31,6 @@ __decorate([
     (0, typeorm_1.OneToMany)(() => menu_items_entity_1.MenuItem, (menuItem) => menuItem.category),
     __metadata("design:type", Array)
 ], Category.prototype, "menuItems", void 0);
-Category = __decorate([
+exports.Category = Category = __decorate([
     (0, typeorm_1.Entity)('categories')
 ], Category);
-exports.Category = Category;

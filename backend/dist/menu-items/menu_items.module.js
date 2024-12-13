@@ -14,7 +14,8 @@ const menu_items_service_1 = require("./menu_items.service");
 const menu_items_controller_1 = require("./menu_items.controller");
 let MenuItemsModule = class MenuItemsModule {
 };
-MenuItemsModule = __decorate([
+exports.MenuItemsModule = MenuItemsModule;
+exports.MenuItemsModule = MenuItemsModule = __decorate([
     (0, common_1.Module)({
         imports: [typeorm_1.TypeOrmModule.forFeature([menu_items_entity_1.MenuItem])],
         providers: [menu_items_service_1.MenuItemsService],
@@ -22,4 +23,3 @@ MenuItemsModule = __decorate([
         exports: [menu_items_service_1.MenuItemsService, typeorm_1.TypeOrmModule],
     })
 ], MenuItemsModule);
-exports.MenuItemsModule = MenuItemsModule;

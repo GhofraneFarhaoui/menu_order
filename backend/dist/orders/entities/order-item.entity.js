@@ -15,6 +15,7 @@ const order_entity_1 = require("./order.entity");
 const menu_items_entity_1 = require("../../menu-items/entities/menu_items.entity");
 let OrderItem = class OrderItem {
 };
+exports.OrderItem = OrderItem;
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)(),
     __metadata("design:type", Number)
@@ -31,7 +32,6 @@ __decorate([
     (0, typeorm_1.Column)({ type: 'int' }),
     __metadata("design:type", Number)
 ], OrderItem.prototype, "quantity", void 0);
-OrderItem = __decorate([
+exports.OrderItem = OrderItem = __decorate([
     (0, typeorm_1.Entity)('order_item')
 ], OrderItem);
-exports.OrderItem = OrderItem;

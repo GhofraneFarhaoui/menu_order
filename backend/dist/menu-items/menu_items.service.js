@@ -50,9 +50,9 @@ let MenuItemsService = class MenuItemsService {
         });
     }
 };
-MenuItemsService = __decorate([
+exports.MenuItemsService = MenuItemsService;
+exports.MenuItemsService = MenuItemsService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, typeorm_1.InjectRepository)(menu_items_entity_1.MenuItem)),
     __metadata("design:paramtypes", [typeorm_2.Repository])
 ], MenuItemsService);
-exports.MenuItemsService = MenuItemsService;

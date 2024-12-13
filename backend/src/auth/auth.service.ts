@@ -6,8 +6,8 @@ import * as bcrypt from 'bcryptjs';
 @Injectable()
 export class AuthService {
   constructor(
-    private readonly userService: UserService, // fetch user info from the db
-    private readonly jwtService: JwtService // create tokens
+    private readonly userService: UserService,
+    private readonly jwtService: JwtService
   ) {}
   async validateUser(username: string, password: string): Promise<any> {
     const user = await this.userService.findByUsername(username);
@@ -25,9 +25,9 @@ export class AuthService {
   }
 
   async login(user: any) {
-    const payload = { username: user.username, sub: user.id, role: user.role }; // add role
+    const payload = { username: user.username, sub: user.id, role: user.role };
     return {
-      access_token: this.jwtService.sign(payload), // generate a the token so the clien will use this token for further authenticated requests
+      access_token: this.jwtService.sign(payload),
     };
   }
 }

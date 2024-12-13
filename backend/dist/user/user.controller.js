@@ -37,6 +37,7 @@ let UserController = class UserController {
         });
     }
 };
+exports.UserController = UserController;
 __decorate([
     (0, common_1.Post)('create')
     //@Roles('admin') // Only admin can access this endpoint
@@ -46,10 +47,9 @@ __decorate([
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], UserController.prototype, "create", null);
-UserController = __decorate([
+exports.UserController = UserController = __decorate([
     (0, common_1.Controller)('user')
     //@UseGuards(JwtAuthGuard, RolesGuard) //role guardextracts the user's role from the JWT payload
     ,
     __metadata("design:paramtypes", [user_service_1.UserService])
 ], UserController);
-exports.UserController = UserController;

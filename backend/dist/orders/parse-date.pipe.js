@@ -53,7 +53,7 @@ let ParseDatePipe = class ParseDatePipe {
         return new Date(year, month - 1, day);
     }
 };
-ParseDatePipe = __decorate([
+exports.ParseDatePipe = ParseDatePipe;
+exports.ParseDatePipe = ParseDatePipe = __decorate([
     (0, common_1.Injectable)()
 ], ParseDatePipe);
-exports.ParseDatePipe = ParseDatePipe;

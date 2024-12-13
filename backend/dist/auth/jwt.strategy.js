@@ -42,8 +42,8 @@ let JwtStrategy = class JwtStrategy extends (0, passport_1.PassportStrategy)(pas
         });
     }
 };
-JwtStrategy = __decorate([
+exports.JwtStrategy = JwtStrategy;
+exports.JwtStrategy = JwtStrategy = __decorate([
     (0, common_1.Injectable)(),
     __metadata("design:paramtypes", [user_service_1.UserService])
 ], JwtStrategy);
-exports.JwtStrategy = JwtStrategy;

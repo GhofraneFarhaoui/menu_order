@@ -39,6 +39,7 @@ let CategoryController = class CategoryController {
         });
     }
 };
+exports.CategoryController = CategoryController;
 __decorate([
     (0, common_1.Get)(),
     __metadata("design:type", Function),
@@ -52,8 +53,7 @@ __decorate([
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
 ], CategoryController.prototype, "findOne", null);
-CategoryController = __decorate([
+exports.CategoryController = CategoryController = __decorate([
     (0, common_1.Controller)('categories'),
     __metadata("design:paramtypes", [category_service_1.CategoryService])
 ], CategoryController);
-exports.CategoryController = CategoryController;

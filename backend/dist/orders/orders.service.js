@@ -134,11 +134,11 @@ let OrderService = class OrderService {
         });
     }
 };
-OrderService = __decorate([
+exports.OrderService = OrderService;
+exports.OrderService = OrderService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, typeorm_1.InjectRepository)(order_entity_1.Order)),
     __param(1, (0, typeorm_1.InjectRepository)(order_item_entity_1.OrderItem)),
     __metadata("design:paramtypes", [typeorm_2.Repository,
         typeorm_2.Repository])
 ], OrderService);
-exports.OrderService = OrderService;

@@ -45,6 +45,7 @@ let MenuItemsController = class MenuItemsController {
         });
     }
 };
+exports.MenuItemsController = MenuItemsController;
 __decorate([
     (0, common_1.Get)(),
     __metadata("design:type", Function),
@@ -65,8 +66,7 @@ __decorate([
     __metadata("design:paramtypes", [create_menu_item_dto_1.CreateMenuItemDto]),
     __metadata("design:returntype", Promise)
 ], MenuItemsController.prototype, "create", null);
-MenuItemsController = __decorate([
+exports.MenuItemsController = MenuItemsController = __decorate([
     (0, common_1.Controller)('menu_items'),
     __metadata("design:paramtypes", [menu_items_service_1.MenuItemsService])
 ], MenuItemsController);
-exports.MenuItemsController = MenuItemsController;

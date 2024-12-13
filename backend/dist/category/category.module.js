@@ -14,11 +14,11 @@ const category_service_1 = require("./category.service");
 const category_controller_1 = require("./category.controller");
 let CategoriesModule = class CategoriesModule {
 };
-CategoriesModule = __decorate([
+exports.CategoriesModule = CategoriesModule;
+exports.CategoriesModule = CategoriesModule = __decorate([
     (0, common_1.Module)({
         imports: [typeorm_1.TypeOrmModule.forFeature([category_entity_1.Category])],
         providers: [category_service_1.CategoryService],
         controllers: [category_controller_1.CategoryController],
     })
 ], CategoriesModule);
-exports.CategoriesModule = CategoriesModule;

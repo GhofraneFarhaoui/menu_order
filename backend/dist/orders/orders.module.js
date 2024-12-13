@@ -17,7 +17,8 @@ const menu_items_entity_1 = require("../menu-items/entities/menu_items.entity");
 const menu_items_module_1 = require("../menu-items/menu_items.module");
 let OrdersModule = class OrdersModule {
 };
-OrdersModule = __decorate([
+exports.OrdersModule = OrdersModule;
+exports.OrdersModule = OrdersModule = __decorate([
     (0, common_1.Module)({
         imports: [
             typeorm_1.TypeOrmModule.forFeature([order_entity_1.Order, order_item_entity_1.OrderItem, menu_items_entity_1.MenuItem]),
@@ -27,4 +28,3 @@ OrdersModule = __decorate([
         controllers: [orders_controller_1.OrderController],
     })
 ], OrdersModule);
-exports.OrdersModule = OrdersModule;
