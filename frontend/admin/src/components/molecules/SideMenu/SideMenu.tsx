@@ -13,7 +13,7 @@ const SideMenu: React.FC = () => (
         <Link to="/Menu">Menu</Link>{' '}
       </li>
       <li>
-        <Link to="/orders">Commandes</Link>{' '}
+        <Link to="/settings">Settings</Link>{' '}
       </li>
     </ul>
   </nav>
