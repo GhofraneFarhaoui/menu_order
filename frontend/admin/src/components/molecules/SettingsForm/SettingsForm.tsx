@@ -25,9 +25,11 @@ const SettingsForm: React.FC = () => {
   };
 
   return (
-    <ReusableForm onSubmit={handleSubmit} onClose={() => console.log('Closed')}>
-      <h2 className={styles.title}>Paramètres</h2>
-
+    <ReusableForm
+      onSubmit={handleSubmit}
+      onClose={() => console.log('Closed')}
+      title={<label className="title">Image d'arrière plan</label>}
+    >
       <div className={styles.colorGrid}>
         <div>
           <label className={styles.colorLabel}>Menu Actif</label>

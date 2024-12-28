@@ -12,7 +12,6 @@
   z-index: 1000;
 }
 
-/* Form container with white background */
 .formContainer {
   background-color: #fff;
   border-radius: 10px;
@@ -20,15 +19,6 @@
   width: 500px;
   max-width: 90%;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-/* Title styling */
-.title {
-  font-size: 24px;
-  font-weight: 700;
-  margin-bottom: 20px;
-  text-align: center;
-  color: #333;
 }
 
 /* Grid layout for color inputs */
@@ -74,7 +64,6 @@
   flex-grow: 1;
 }
 
-/* Upload Box */
 .uploadBoxContainer {
   display: flex;
   justify-content: center;

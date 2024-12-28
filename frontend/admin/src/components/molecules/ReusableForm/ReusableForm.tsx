@@ -5,12 +5,14 @@ interface ReusableFormProps {
   children: React.ReactNode;
   onSubmit: (e: React.FormEvent) => void;
   onClose?: () => void;
+  title?: React.ReactNode;
 }
 
 const ReusableForm: React.FC<ReusableFormProps> = ({
   children,
   onSubmit,
   onClose,
+  title,
 }) => {
   const [uploadedImage, setUploadedImage] = useState<string | null>(null);
 
@@ -26,6 +28,7 @@ const ReusableForm: React.FC<ReusableFormProps> = ({
   return (
     <div className={styles.overlay}>
       <form className={styles.formContainer} onSubmit={onSubmit}>
+        {title && <div className={styles.title}>{title}</div>}
         <div className={styles.uploadBoxContainer}>
           <label htmlFor="fileUpload" className={styles.uploadBox}>
             {uploadedImage ? (
