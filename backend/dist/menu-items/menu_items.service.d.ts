@@ -7,4 +7,5 @@ export declare class MenuItemsService {
     findAll(): Promise<MenuItem[]>;
     findByCategory(categoryId: number): Promise<MenuItem[]>;
     create(createMenuItemDto: CreateMenuItemDto): Promise<MenuItem>;
+    publishAll(): Promise<void>;
 }

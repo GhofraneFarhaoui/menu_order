@@ -6,4 +6,5 @@ export declare class MenuItem {
     price: number;
     image_url: string;
     category: Category;
+    availability: boolean;
 }

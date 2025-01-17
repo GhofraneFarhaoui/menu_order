@@ -49,6 +49,15 @@ let MenuItemsService = class MenuItemsService {
             return this.menuItemsRepository.save(menuItem);
         });
     }
+    publishAll() {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.menuItemsRepository
+                .createQueryBuilder()
+                .update(menu_items_entity_1.MenuItem)
+                .set({ availability: true })
+                .execute();
+        });
+    }
 };
 exports.MenuItemsService = MenuItemsService;
 exports.MenuItemsService = MenuItemsService = __decorate([

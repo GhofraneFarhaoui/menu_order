@@ -26,4 +26,12 @@ export class MenuItemsService {
     const menuItem = this.menuItemsRepository.create(createMenuItemDto);
     return this.menuItemsRepository.save(menuItem);
   }
+
+  async publishAll(): Promise<void> {
+    await this.menuItemsRepository
+      .createQueryBuilder()
+      .update(MenuItem)
+      .set({ availability: true })
+      .execute();
+  }
 }

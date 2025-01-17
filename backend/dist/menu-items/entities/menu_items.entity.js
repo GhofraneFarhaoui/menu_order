@@ -39,6 +39,10 @@ __decorate([
     (0, typeorm_1.ManyToOne)(() => category_entity_1.Category, (category) => category.menuItems),
     __metadata("design:type", category_entity_1.Category)
 ], MenuItem.prototype, "category", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ default: false }),
+    __metadata("design:type", Boolean)
+], MenuItem.prototype, "availability", void 0);
 exports.MenuItem = MenuItem = __decorate([
     (0, typeorm_1.Entity)('menu_items')
 ], MenuItem);

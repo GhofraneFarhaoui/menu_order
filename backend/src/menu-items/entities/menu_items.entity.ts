@@ -20,4 +20,7 @@ export class MenuItem {
 
   @ManyToOne(() => Category, (category) => category.menuItems)
   category: Category;
+
+  @Column({ default: false })
+  availability: boolean;
 }

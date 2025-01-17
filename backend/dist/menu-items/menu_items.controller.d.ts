@@ -6,4 +6,10 @@ export declare class MenuItemsController {
     findAll(): Promise<import("./entities/menu_items.entity").MenuItem[]>;
     findByCategory(categoryId: number): Promise<import("./entities/menu_items.entity").MenuItem[]>;
     create(createMenuItemDto: CreateMenuItemDto): Promise<import("./entities/menu_items.entity").MenuItem>;
+    uploadImage(file: Express.Multer.File): Promise<{
+        imageUrl: string;
+    }>;
+    publishAll(): Promise<{
+        message: string;
+    }>;
 }
