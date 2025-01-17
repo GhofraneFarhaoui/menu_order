@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Popup from '../../atoms/Popup/Popup';
 import styles from './MenuItemBox.module.css';
+import QRCodeGenerator from '../../atoms/QrCode/QRCodeGenerator';
 
 interface MenuItem {
   id: number;
@@ -23,6 +24,8 @@ interface MenuItemBoxProps {
 const MenuItemBox: React.FC<MenuItemBoxProps> = ({ onItemSelect }) => {
   const [menuItems, setMenuItems] = useState<MenuItem[]>([]);
   const [showPopup, setShowPopup] = useState(false);
+  const [showQRCode, setShowQRCode] = useState(false);
+  const [qrCodeLink, setQrCodeLink] = useState('');
 
   useEffect(() => {
     const fetchMenuItems = async () => {
@@ -62,6 +65,8 @@ const MenuItemBox: React.FC<MenuItemBoxProps> = ({ onItemSelect }) => {
     try {
       await axios.patch('http://localhost:3000/menu_items/publish');
       alert('Menu published successfully.');
+      setQrCodeLink('http://localhost:3000/menu_items');
+      setShowQRCode(true);
     } catch (error) {
       console.error('Failed to publish menu:', error);
     }
@@ -85,7 +90,7 @@ const MenuItemBox: React.FC<MenuItemBoxProps> = ({ onItemSelect }) => {
           >
             <div className={styles.itemImageBox}>
               <img
-                src={`http://localhost:3000/static/${item.image_url}`}
+                src={item.image_url}
                 alt={item.name}
                 className={styles.itemImage}
               />
@@ -116,6 +121,12 @@ const MenuItemBox: React.FC<MenuItemBoxProps> = ({ onItemSelect }) => {
         onClose={() => setShowPopup(false)}
         onAddMenuItem={handleAddMenuItem}
       />
+      {showQRCode && (
+        <div className={styles.qrCodeContainer}>
+          <h3>Scannez le code QR pour voir le menu :</h3>
+          <QRCodeGenerator value={qrCodeLink} />
+        </div>
+      )}
     </div>
   );
 };

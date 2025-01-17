@@ -1,7 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Bhaina+2:wght@700&display=swap'); /* Ensure font is imported */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 body {
   font-family: 'Baloo Bhaina 2', sans-serif;
   font-size: 36px;
-
   background-color: #f0f0f4;
   color: #333;
   margin: 0;

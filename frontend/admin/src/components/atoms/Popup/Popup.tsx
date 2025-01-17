@@ -47,13 +47,30 @@ const Popup: React.FC<PopupProps> = ({ isOpen, onClose, onAddMenuItem }) => {
     if (isOpen) fetchCategories();
   }, [isOpen]);
 
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileChange = async (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     const file = event.target.files?.[0];
     if (file) {
-      setNewItem((prevItem) => ({
-        ...prevItem,
-        image_url: URL.createObjectURL(file),
-      }));
+      const formData = new FormData();
+      formData.append('image', file);
+
+      try {
+        const response = await axios.post(
+          'http://localhost:3000/menu_items/upload-image',
+          formData,
+          {
+            headers: { 'Content-Type': 'multipart/form-data' },
+          }
+        );
+        setNewItem((prevItem) => ({
+          ...prevItem,
+          image_url: response.data.imageUrl,
+        }));
+      } catch (error) {
+        console.error('Image upload failed:', error);
+        alert('Failed to upload image. Please try again.');
+      }
     }
   };
 
@@ -73,7 +90,7 @@ const Popup: React.FC<PopupProps> = ({ isOpen, onClose, onAddMenuItem }) => {
     e.preventDefault();
     const { name, price, description, categoryId, image_url } = newItem;
 
-    if (name && price && categoryId) {
+    if (name && price && categoryId && image_url) {
       const formattedItem = {
         name,
         description,
@@ -85,7 +102,7 @@ const Popup: React.FC<PopupProps> = ({ isOpen, onClose, onAddMenuItem }) => {
       resetForm();
       onClose();
     } else {
-      alert('Please fill in all required fields.');
+      alert('Please fill in all required fields, including the image.');
     }
   };
 

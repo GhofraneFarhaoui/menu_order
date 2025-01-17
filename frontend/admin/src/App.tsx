@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import './index.css';
 import AdminLogin from './pages/login/adminLogin';
 import Dashboard from './pages/dashboard/dashboard';
 import Menu from './pages/Menu/MenuPage';
@@ -17,5 +18,4 @@ const App: React.FC = () => {
     </Router>
   );
 };
-
 export default App;
